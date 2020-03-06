@@ -25,10 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        MainMenu.cpp
+        MainMenu.cpp \
+    MainMenuPresenter.cpp \
+    MainMenuModel.cpp
 
 HEADERS += \
-        MainMenu.h
+        MainMenu.h \
+    MainMenuPresenter.h \
+    MainMenuModel.h
 
 FORMS += \
         MainMenu.ui
