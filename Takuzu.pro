@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         MainMenu.cpp \
     MainMenuPresenter.cpp \
-    MainMenuModel.cpp
+    MainMenuModel.cpp \
+    GridInfo.cpp
 
 HEADERS += \
         MainMenu.h \
     MainMenuPresenter.h \
-    MainMenuModel.h
+    MainMenuModel.h \
+    GridInfo.h
 
 FORMS += \
         MainMenu.ui

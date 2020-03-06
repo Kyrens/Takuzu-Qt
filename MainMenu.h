@@ -2,6 +2,7 @@
 #define MAINMENU_H
 
 #include <QMainWindow>
+#include "QPushButton"
 
 namespace Ui {
 class MainMenu;
@@ -14,6 +15,7 @@ class MainMenu : public QMainWindow
 public:
     explicit MainMenu(QWidget *parent = 0);
     ~MainMenu();
+    QPushButton * getStartButton();
 
 private:
     Ui::MainMenu *ui;

@@ -8,6 +8,10 @@ MainMenu::MainMenu(QWidget *parent) :
     ui->setupUi(this);
 }
 
+QPushButton * MainMenu::getStartButton() {
+    return ui->_startButton;
+}
+
 MainMenu::~MainMenu()
 {
     delete ui;

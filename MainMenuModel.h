@@ -4,6 +4,8 @@
 #include <QObject>
 #include "MainMenuPresenter.h"
 
+class MainMenuPresenter;
+
 class MainMenuModel : public QObject
 {
 public:
