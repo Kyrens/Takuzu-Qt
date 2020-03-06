@@ -35,4 +35,5 @@ HEADERS += \
     MainMenuModel.h
 
 FORMS += \
-        MainMenu.ui
+        MainMenu.ui \
+    GameWindow.ui
