@@ -37,4 +37,5 @@ HEADERS += \
     GridInfo.h
 
 FORMS += \
-        MainMenu.ui
+        MainMenu.ui \
+    GameWindow.ui
