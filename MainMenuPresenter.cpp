@@ -1,4 +1,5 @@
 #include "MainMenuPresenter.h"
+#include "GameWindow.h"
 
 MainMenuPresenter::MainMenuPresenter(MainMenu * mainMenu)
 {
@@ -23,10 +24,9 @@ void MainMenuPresenter::connectGameStart() {
 
 void MainMenuPresenter::gameStarted() {
 
-    /*MainMenu w;
-    MainMenuPresenter mmp(&w);
-    GridInfo("6_easy.txt");
-    w.show();*/
+    _mainMenu->close();
+    GameWindow * w = new GameWindow;
+    w->show();
 }
 
 MainMenuPresenter::~MainMenuPresenter() {

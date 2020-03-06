@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>GameWindow</class>
+ <widget class="QMainWindow" name="GameWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -145,12 +145,12 @@
   </action>
   <action name="actionR_gles_du_jeu">
    <property name="text">
-    <string>Règles du jeu</string>
+    <string>&amp;Règles du jeu</string>
    </property>
   </action>
   <action name="action_propos">
    <property name="text">
-    <string>À propos</string>
+    <string>&amp;À propos</string>
    </property>
   </action>
  </widget>
