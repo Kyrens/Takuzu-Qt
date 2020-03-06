@@ -1,24 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainMenu</class>
- <widget class="QMainWindow" name="MainMenu" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainMenu">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>500</width>
+    <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>MainMenu</string>
+  <property name="windowTitle">
+   <string>Takuzu</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>481</width>
+      <height>561</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <item>
+      <spacer name="verticalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="title_label">
+       <property name="font">
+        <font>
+         <family>Ubuntu Mono</family>
+         <pointsize>40</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>TAKUZU</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Ubuntu Mono</family>
+          </font>
+         </property>
+         <property name="text">
+          <string>Choisissez la taille :</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QComboBox" name="_sizeComboBox">
+         <property name="font">
+          <font>
+           <family>Ubuntu Mono</family>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <family>Ubuntu Mono</family>
+          </font>
+         </property>
+         <property name="text">
+          <string>Choisissez la difficulté : </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QRadioButton" name="_easyRadioButton">
+           <property name="font">
+            <font>
+             <family>Ubuntu Mono</family>
+            </font>
+           </property>
+           <property name="text">
+            <string>Facile</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="_hardRadioButton">
+           <property name="font">
+            <font>
+             <family>Ubuntu Mono</family>
+            </font>
+           </property>
+           <property name="text">
+            <string>Difficile</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="_startButton">
+       <property name="font">
+        <font>
+         <family>Ubuntu Mono</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Commencez !</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>500</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
+   </property>
+   <widget class="QMenu" name="menuJeu">
+    <property name="title">
+     <string>&amp;Jeu</string>
+    </property>
+    <addaction name="actionNouvelle_partie"/>
+    <addaction name="separator"/>
+    <addaction name="action_Quitter"/>
+   </widget>
+   <widget class="QMenu" name="menuAide">
+    <property name="title">
+     <string>&amp;Aide</string>
+    </property>
+    <addaction name="actionR_gles_du_jeu"/>
+    <addaction name="action_propos"/>
+   </widget>
+   <addaction name="menuJeu"/>
+   <addaction name="menuAide"/>
+  </widget>
+  <action name="actionNouvelle_partie">
+   <property name="text">
+    <string>&amp;Nouvelle partie ...</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
+   </property>
+  </action>
+  <action name="action_Quitter">
+   <property name="text">
+    <string>&amp;Quitter</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionR_gles_du_jeu">
+   <property name="text">
+    <string>Règles du jeu</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
+   </property>
+  </action>
+  <action name="action_propos">
+   <property name="text">
+    <string>À propos</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
+   </property>
+  </action>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
