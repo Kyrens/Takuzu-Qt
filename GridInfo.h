@@ -7,8 +7,10 @@ class GridInfo
 {
 public:
     GridInfo(const char * fileName);
-    int size;
-    Difficulty difficulty;
+    ~GridInfo();
+    int _size;
+    Difficulty _difficulty;
+    char * _fileName;
 };
 
 #endif // GRIDINFO_H

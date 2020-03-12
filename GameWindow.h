@@ -2,6 +2,7 @@
 #define GAMEWINDOW_H
 
 #include <QMainWindow>
+#include "GridInfo.h"
 
 namespace Ui {
 class GameWindow;
@@ -11,7 +12,7 @@ class GameWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit GameWindow(QWidget *parent = nullptr);
+    explicit GameWindow(const char * fileName, QWidget *parent = nullptr);
     ~GameWindow();
 
 private:

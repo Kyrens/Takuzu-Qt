@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "QPushButton"
+#include "QComboBox"
+#include "QRadioButton"
+#include "GridInfo.h"
 
 namespace Ui {
 class MainMenu;
@@ -16,6 +19,10 @@ public:
     explicit MainMenu(QWidget *parent = 0);
     ~MainMenu();
     QPushButton * getStartButton();
+    QComboBox * getSizeComboBox();
+    void activateDifficulty(Difficulty diff);
+    void disableAllDifficulties();
+    QRadioButton * getRadioButton(Difficulty diff);
 
 private:
     Ui::MainMenu *ui;

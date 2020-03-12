@@ -41,3 +41,6 @@ HEADERS += \
 FORMS += \
         MainMenu.ui \
     GameWindow.ui
+
+RESOURCES +=
+

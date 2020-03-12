@@ -138,6 +138,9 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QRadioButton" name="_easyRadioButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="font">
             <font>
              <family>Ubuntu Mono</family>
@@ -150,6 +153,9 @@
          </item>
          <item>
           <widget class="QRadioButton" name="_hardRadioButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="font">
             <font>
              <family>Ubuntu Mono</family>
@@ -233,7 +239,7 @@
   </action>
   <action name="actionR_gles_du_jeu">
    <property name="text">
-    <string>Règles du jeu</string>
+    <string>&amp;Règles du jeu</string>
    </property>
    <property name="font">
     <font>
@@ -243,7 +249,7 @@
   </action>
   <action name="action_propos">
    <property name="text">
-    <string>À propos</string>
+    <string>&amp;À propos</string>
    </property>
    <property name="font">
     <font>

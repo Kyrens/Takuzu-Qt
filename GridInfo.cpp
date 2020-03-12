@@ -1,14 +1,34 @@
 #include "GridInfo.h"
 #include <iostream>
-#include <string>
-#include <regex>
+#include <stdio.h>
+#include <string.h>
 
 GridInfo::GridInfo(const char * fileName)
 {
-    /*std::cmatch cm;
-    std::regex_match (fileName, cm, "[0-9]*\_(easy|hard)\.txt", std::regex_constants::match_default);
+    int size;
+    char difficulty[10];
+    static const char * difficulties[] = { "easy", "hard" };
 
-    for (unsigned i = 0; i < cm.size(); ++i) {
-        std::cout << "[" << cm[i] << "] ";
-    }*/
+    if (2 == std::sscanf(fileName, "%d_%[^.].txt", &size, difficulty)) {
+        bool ok = false;
+        for (int i = 0; i < 2; ++i) {
+            if (!strcmp(difficulties[i], difficulty)) {
+                _difficulty = static_cast<Difficulty>(i);
+                ok = true;
+                break;
+            }
+        }
+        if (!ok) {
+            throw "Unknown difficulty";
+        }
+        _size = size;
+        _fileName = new char[strlen(fileName) + 1];
+        strcpy(_fileName, fileName);
+        return;
+    }
+    throw "Wrong file name";
+}
+
+GridInfo::~GridInfo() {
+    delete[] _fileName;
 }

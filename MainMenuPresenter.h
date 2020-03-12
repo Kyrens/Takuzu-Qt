@@ -4,6 +4,8 @@
 #include <QObject>
 #include "MainMenu.h"
 #include "MainMenuModel.h"
+#include "GridInfo.h"
+#include <QString>
 
 class MainMenuModel;
 
@@ -13,20 +15,20 @@ class MainMenuPresenter : public QObject
 public:
     MainMenuPresenter(MainMenu * mainMenu);
     ~MainMenuPresenter();
-    void connectGridSize();
-    void connectGameDifficulty();
-    void connectGameStart();
+    void refreshGrids(GridInfo ** grids, int gridsCount);
+    GridInfo * getSelectedGrid();
 
 signals:
-    void gridSizeChanged(int size);
-    void gameDifficultyChanged(int difficulty);
 
 public slots:
     void gameStarted();
+    void sizeChanged(QString size);
 
 private:
     MainMenu * _mainMenu;
     MainMenuModel * _model;
+    GridInfo ** _grids = nullptr;
+    int _gridsCount = 0;
 };
 
 #endif // MAINMENUPRESENTER_H
