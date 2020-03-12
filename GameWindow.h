@@ -3,20 +3,24 @@
 
 #include <QMainWindow>
 #include "GridInfo.h"
+#include "GameWindowPresenter.h"
 
 namespace Ui {
 class GameWindow;
 }
 
+class GameWindowPresenter;
+
 class GameWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit GameWindow(const char * fileName, QWidget *parent = nullptr);
+    GameWindow(const char * fileName, QWidget *parent = nullptr);
     ~GameWindow();
 
 private:
     Ui::GameWindow *ui;
+    GameWindowPresenter * _presenter;
 };
 
 #endif // GAMEWINDOW_H

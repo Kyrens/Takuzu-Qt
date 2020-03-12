@@ -29,14 +29,22 @@ SOURCES += \
     MainMenuPresenter.cpp \
     MainMenuModel.cpp \
     GridInfo.cpp \
-    GameWindow.cpp
+    GameWindow.cpp \
+    GridsList.cpp \
+    GameWindowPresenter.cpp \
+    GameWindowModel.cpp \
+    Grid.cpp
 
 HEADERS += \
         MainMenu.h \
     MainMenuPresenter.h \
     MainMenuModel.h \
     GridInfo.h \
-    GameWindow.h
+    GameWindow.h \
+    GridsList.h \
+    GameWindowPresenter.h \
+    GameWindowModel.h \
+    Grid.h
 
 FORMS += \
         MainMenu.ui \
