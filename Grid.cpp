@@ -34,3 +34,28 @@ int Grid::getSize() {
 char** Grid::getCells() {
     return _cells;
 }
+
+
+Grid::Grid(Grid * grid) {
+
+    _size = grid->_size;
+    _cells = new char*[_size];
+    for(int i = 0; i < _size; ++i) {
+       _cells[i] = new char[_size];
+       for (int j = 0; j < _size; ++j) {
+           _cells[i][j] = grid->_cells[i][j];
+       }
+    }
+    _editable = true;
+}
+
+void Grid::setCell(int i, int j, char c) {
+
+    if (!_editable) {
+        throw "This grid is not editable";
+    }
+    if (i < 0 || i >= _size || j < 0 || j >= _size) {
+        throw "Grid out of bound";
+    }
+    _cells[i][j] = c;
+}
