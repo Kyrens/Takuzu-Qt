@@ -18,6 +18,7 @@ public:
     GameWindow(const char * fileName, QWidget *parent = nullptr);
     ~GameWindow();
     void setTime(int min, int sec);
+    void showInitGrid(int size);
 
 private:
     Ui::GameWindow *ui;
