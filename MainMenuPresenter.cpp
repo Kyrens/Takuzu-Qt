@@ -6,7 +6,7 @@ MainMenuPresenter::MainMenuPresenter(MainMenu * mainMenu)
 {
     _mainMenu = mainMenu;
     connect(_mainMenu->getStartButton(), SIGNAL(clicked(bool)), this, SLOT(gameStarted()));
-    connect(_mainMenu->getSizeComboBox(), SIGNAL(currentTextChanged(QString)), this, SLOT(sizeChanged(QString)));
+    connect(_mainMenu->getSizeComboBox(), SIGNAL(currentIndexChanged(QString)), this, SLOT(sizeChanged(QString)));
     _model = new MainMenuModel(this);
 }
 
