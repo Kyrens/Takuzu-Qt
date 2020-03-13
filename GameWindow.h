@@ -17,6 +17,7 @@ class GameWindow : public QMainWindow
 public:
     GameWindow(const char * fileName, QWidget *parent = nullptr);
     ~GameWindow();
+    void setTime(int min, int sec);
 
 private:
     Ui::GameWindow *ui;

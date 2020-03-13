@@ -13,3 +13,16 @@ GameWindow::~GameWindow()
 {
     delete ui;
 }
+
+void GameWindow::setTime(int min, int sec) {
+    QString s;
+    if (min < 10) {
+        s.append('0');
+    }
+    s.append(QString::number(min)).append(":");
+    if (sec < 10) {
+        s.append('0');
+    }
+    s.append(QString::number(sec));
+    ui->timeLabel->setText(s);
+}

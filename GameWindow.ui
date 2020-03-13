@@ -41,7 +41,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="timeLabel">
        <property name="font">
         <font>
          <family>Ubuntu Mono</family>

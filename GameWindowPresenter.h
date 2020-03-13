@@ -21,6 +21,7 @@ private:
 signals:
 
 public slots:
+    void timeUpdate();
 };
 
 #endif // GAMEWINDOWPRESENTER_H
