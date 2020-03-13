@@ -4,4 +4,6 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
 
     _view = gameWindow;
     _model = new GameWindowModel(this, fileName, this);
+
+    _view->showInitGrid(_model->getPlayerGrid()->getSize());
 }

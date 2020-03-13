@@ -7,6 +7,7 @@ GameWindowModel::GameWindowModel(GameWindowPresenter * gameWindowPresenter, cons
     _presenter = gameWindowPresenter;
     _gridsList = new GridsList(fileName);
     srand(time(NULL));
+    initRandomGrid();
 }
 
 GameWindowModel::~GameWindowModel() {

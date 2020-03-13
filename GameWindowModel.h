@@ -14,6 +14,8 @@ public:
     GameWindowModel(GameWindowPresenter * gameWindowPresenter, const char * fileName, QObject *parent = nullptr);
     ~GameWindowModel();
     void initRandomGrid();
+    Grid * getPlayerGrid();
+    Grid * getGameGrid();
 
 private:
     GameWindowPresenter * _presenter;

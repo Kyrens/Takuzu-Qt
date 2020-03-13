@@ -13,6 +13,7 @@ public:
     MainMenuModel(MainMenuPresenter * presenter);
     ~MainMenuModel();
 
+
 public slots:
     void changeSize(int size);
     void changeDifficulty(int difficulty);

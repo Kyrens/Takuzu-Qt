@@ -17,6 +17,7 @@ class GameWindow : public QMainWindow
 public:
     GameWindow(const char * fileName, QWidget *parent = nullptr);
     ~GameWindow();
+    void showInitGrid(int size);
 
 private:
     Ui::GameWindow *ui;
