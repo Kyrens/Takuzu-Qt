@@ -10,6 +10,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
     int size = _model->getPlayerGrid()->getSize();
     _view->showInitGrid(size);
     _view->toggleUndoButton(false);
+    _view->updateUndoCount(0);
 
     _errorsTmp = new bool[_model->getPlayerGrid()->getSize()]();
 
@@ -78,6 +79,7 @@ void GameWindowPresenter::undoLastAction() {
     std::pair<int,int> cell = _model->undoLastClickCellAction();
     if (cell.first != -1) {
         refreshCell(cell.first, cell.second);
+        _view->updateUndoCount(_model->getUndoCount());
     }
     _view->toggleUndoButton(_model->canUndo());
 }

@@ -137,3 +137,7 @@ std::pair<int,int> GameWindowModel::undoLastClickCellAction() {
     }
     return cell;
 }
+
+int GameWindowModel::getUndoCount() {
+    return _undoCount;
+}

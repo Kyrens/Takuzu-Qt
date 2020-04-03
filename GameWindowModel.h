@@ -23,6 +23,7 @@ public:
     bool getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount);
     std::pair<int,int> undoLastClickCellAction();
     bool canUndo();
+    int getUndoCount();
 
 private:
     GameWindowPresenter * _presenter;

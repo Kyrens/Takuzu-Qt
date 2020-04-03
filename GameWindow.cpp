@@ -104,3 +104,7 @@ void GameWindow::refreshColumn(int column, bool * errors, int whiteLeft, int bla
 void GameWindow::toggleUndoButton(bool enable) {
 
 }
+
+void GameWindow::updateUndoCount(int undoCount) {
+
+}

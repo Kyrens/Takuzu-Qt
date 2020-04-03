@@ -23,6 +23,7 @@ public:
     void refreshLine(int line, bool * errors, int whiteLeft, int blackLeft);
     void refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft);
     void toggleUndoButton(bool enable);
+    void updateUndoCount(int undoCount);
 
 private:
     Ui::GameWindow *ui;
