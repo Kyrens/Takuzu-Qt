@@ -4,6 +4,8 @@
 #include <QObject>
 #include "GameWindowPresenter.h"
 #include "GridsList.h"
+#include <stack>
+#include <utility>
 
 class GameWindowPresenter;
 
@@ -19,6 +21,8 @@ public:
     int updatePlayTime();
     bool getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount);
     bool getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount);
+    std::pair<int,int> undoLastClickCellAction();
+    bool canUndo();
 
 private:
     GameWindowPresenter * _presenter;
@@ -27,6 +31,8 @@ private:
     Grid * _playerGrid;
     int _seconds = 0;
     Grid * getGameGrid();
+    std::stack<std::pair<int,int>> _clickCellActionsStack;
+    int _undoCount;
 
 signals:
 

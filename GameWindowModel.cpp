@@ -101,9 +101,39 @@ bool GameWindowModel::clickCell(int i, int j) {
             _playerGrid->setCell(i, j, 'B');
             break;
     }
+    _clickCellActionsStack.push(std::make_pair(i, j));
+
     return true;
 }
 
 int GameWindowModel::updatePlayTime() {
     return ++_seconds;
+}
+
+bool GameWindowModel::canUndo() {
+    return !_clickCellActionsStack.empty();
+}
+
+std::pair<int,int> GameWindowModel::undoLastClickCellAction() {
+    if (_clickCellActionsStack.empty()) {
+        return std::make_pair(-1, -1);
+    }
+    _undoCount++;
+    std::pair<int,int> cell = _clickCellActionsStack.top();
+    _clickCellActionsStack.pop();
+    int i = cell.first;
+    int j = cell.second;
+    char c = _playerGrid->getCell(i, j);
+    switch (c) {
+        case 'B':
+            _playerGrid->setCell(i, j, '.');
+            break;
+        case 'W':
+            _playerGrid->setCell(i, j, 'B');
+            break;
+        default:
+            _playerGrid->setCell(i, j, 'W');
+            break;
+    }
+    return cell;
 }

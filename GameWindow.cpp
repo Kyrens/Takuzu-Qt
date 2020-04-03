@@ -100,3 +100,7 @@ void GameWindow::refreshLine(int line, bool * errors, int whiteLeft, int blackLe
 void GameWindow::refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft) {
 
 }
+
+void GameWindow::toggleUndoButton(bool enable) {
+
+}

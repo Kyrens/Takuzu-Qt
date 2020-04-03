@@ -22,6 +22,7 @@ public:
     void refreshToken(int i, int j, char c);
     void refreshLine(int line, bool * errors, int whiteLeft, int blackLeft);
     void refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft);
+    void toggleUndoButton(bool enable);
 
 private:
     Ui::GameWindow *ui;

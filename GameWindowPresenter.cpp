@@ -1,5 +1,6 @@
 #include "GameWindowPresenter.h"
 #include <QTimer>
+#include <utility>
 
 GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * fileName, QObject *parent) : QObject(parent) {
 
@@ -8,6 +9,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
 
     int size = _model->getPlayerGrid()->getSize();
     _view->showInitGrid(size);
+    _view->toggleUndoButton(false);
 
     _errorsTmp = new bool[_model->getPlayerGrid()->getSize()]();
 
@@ -53,10 +55,15 @@ void GameWindowPresenter::updateCellErrors(int row, int col) {
     _view->refreshColumn(col, _errorsTmp, size - whiteCount, size - blackCount);
 }
 
+void GameWindowPresenter::refreshCell(int i, int j) {
+    _view->refreshToken(i, j, _model->getPlayerGrid()->getCell(i, j));
+    updateCellErrors(i, j);
+}
+
 void GameWindowPresenter::clickCell(int i, int j) {
     if (_model->clickCell(i, j)) {
-        _view->refreshToken(i, j, _model->getPlayerGrid()->getCell(i, j));
-        updateCellErrors(i, j);
+        refreshCell(i, j);
+        _view->toggleUndoButton(true);
     }
     else {
         //Impossible, blocked
@@ -67,3 +74,10 @@ char GameWindowPresenter::getCell(int i, int j) {
     return _model->getPlayerGrid()->getCell(i, j);
 }
 
+void GameWindowPresenter::undoLastAction() {
+    std::pair<int,int> cell = _model->undoLastClickCellAction();
+    if (cell.first != -1) {
+        refreshCell(cell.first, cell.second);
+    }
+    _view->toggleUndoButton(_model->canUndo());
+}
