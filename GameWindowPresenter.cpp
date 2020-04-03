@@ -8,6 +8,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
 
     _view->showInitGrid(_model->getPlayerGrid()->getSize());
 
+    _view->refreshToken(0,0,'W');
     QTimer * timer = new QTimer(this);
     timer->start(1000);
     connect(timer, SIGNAL(timeout()), this, SLOT(timeUpdate()));

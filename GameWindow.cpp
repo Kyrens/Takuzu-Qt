@@ -8,6 +8,13 @@ GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+
+    QPalette pal = ui->centralwidget->palette();
+    pal.setColor(QPalette::Background, QColor(Qt::darkGray));
+    ui->centralwidget->setAutoFillBackground(true);
+    ui->centralwidget->setPalette(pal);
+    ui->centralwidget->update();
+
     _presenter = new GameWindowPresenter(this, fileName, this);
 
 }
@@ -39,10 +46,14 @@ void GameWindow::showInitGrid(int size) {
 
                 tmp->setFixedHeight(50);
                 tmp->setFixedWidth(50);
-
                 QRect rect(5,5,40,40);
                 QRegion region(rect, QRegion::Ellipse);
                 tmp->setMask(region);
+
+                QPalette pal = tmp->palette();
+                pal.setColor(QPalette::Button, QColor(Qt::gray));
+                tmp->setAutoFillBackground(true);
+                tmp->setPalette(pal);
 
                 ui->gridLayout->addWidget(tmp, i, j, 1 ,1, Qt::AlignCenter);
             } else if (i >= size && j >= size) {
@@ -57,7 +68,29 @@ void GameWindow::showInitGrid(int size) {
 }
 
 void GameWindow::refreshToken(int i, int j, char c) {
+    
+    QLayoutItem *item = ui->gridLayout->itemAtPosition(i, j);
+    QWidget *button = item->widget();
 
+    QPalette pal = button->palette();
+
+    switch (c) {
+    case '.':
+        pal.setColor(QPalette::Button, QColor(Qt::gray));
+        break;
+    case 'W':
+        pal.setColor(QPalette::Button, QColor(Qt::white));
+        break;
+    case 'B':
+        pal.setColor(QPalette::Button, QColor(Qt::black));
+        break;
+    default:
+        break;
+    }
+
+    button->setAutoFillBackground(true);
+    button->setPalette(pal);
+    button->update();
 }
 
 void GameWindow::refreshLine(int line, int whiteLeft, int blackLeft) {
