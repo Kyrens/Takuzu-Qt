@@ -1,6 +1,7 @@
 #include "GameWindow.h"
 #include "ui_GameWindow.h"
 #include <QPixmap>
+#include <QPushButton>
 
 GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     QMainWindow(parent),
@@ -34,8 +35,14 @@ void GameWindow::showInitGrid(int size) {
         for(int j = 0; j < size + 2; j++) {
             if (i < size && j < size) {
 
-                QLabel* tmp = new QLabel();
-                tmp->setText("Jeton");
+                QPushButton* tmp = new QPushButton();
+
+                tmp->setFixedHeight(50);
+                tmp->setFixedWidth(50);
+
+                QRect rect(5,5,40,40);
+                QRegion region(rect, QRegion::Ellipse);
+                tmp->setMask(region);
 
                 ui->gridLayout->addWidget(tmp, i, j, 1 ,1, Qt::AlignCenter);
             } else if (i >= size && j >= size) {
