@@ -22,7 +22,8 @@ public:
     void refreshToken(int i, int j, char c);
     void refreshLine(int line, int whiteLeft, int blackLeft);
     void refreshColumn(int column, int whiteLeft, int blackLeft);
-    void refreshCellErrors(bool ** errors);
+    void refreshLine(int line, bool * errors, int whiteLeft, int blackLeft);
+    void refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft);
 
 private:
     Ui::GameWindow *ui;

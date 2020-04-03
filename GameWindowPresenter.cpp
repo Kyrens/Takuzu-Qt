@@ -8,6 +8,8 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
 
     _view->showInitGrid(_model->getPlayerGrid()->getSize());
 
+    bool* _errorsTmp = new bool[_model->getPlayerGrid()->getSize()];
+
     QTimer * timer = new QTimer(this);
     timer->start(1000);
     connect(timer, SIGNAL(timeout()), this, SLOT(timeUpdate()));
@@ -18,9 +20,15 @@ void GameWindowPresenter::timeUpdate() {
     _view->setTime(t / 60, t % 60);
 }
 
+void GameWindowPresenter::updateCellErrors(int row, int col) {
+    int whiteCount;
+    int blackCount;
+    _model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
+}
+
 void GameWindowPresenter::clickCell(int i, int j) {
     if (_model->clickCell(i, j)) {
-        //Okay
+
     }
     else {
         //Impossible, blocked

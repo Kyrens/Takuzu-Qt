@@ -60,14 +60,10 @@ void GameWindow::refreshToken(int i, int j, char c) {
 
 }
 
-void GameWindow::refreshLine(int line, int whiteLeft, int blackLeft) {
+void GameWindow::refreshLine(int line, bool * errors, int whiteLeft, int blackLeft) {
 
 }
 
-void GameWindow::refreshColumn(int column, int whiteLeft, int blackLeft) {
-
-}
-
-void GameWindow::refreshCellErrors(bool ** errors) {
+void GameWindow::refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft) {
 
 }

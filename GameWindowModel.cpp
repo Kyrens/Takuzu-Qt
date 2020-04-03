@@ -28,69 +28,56 @@ Grid * GameWindowModel::getGameGrid() {
     return _gameGrid;
 }
 
-bool GameWindowModel::getRowsOrColumnsErrors(bool ** cells, bool row, bool initCellsAtFalse, int ** count) {
+bool lineErrors(Grid * grid, int line, bool isRow, bool * cellsError, int * whiteCount, int * blackCount) {
     bool error = false;
     char last = '.';
     int cumul = 0;
-    int halfSize = _playerGrid->getSize() / 2;
-    for (int i = 0; i < _playerGrid->getSize(); ++i) {
-        count[i][0] = 0;
-        count[i][1] = 0;
-        for (int j = 0; j < _playerGrid->getSize(); ++j) {
-            if (initCellsAtFalse) {
-                if (row) {
-                    cells[i][j] = false;
-                }
-                else {
-                    cells[j][i] = false;
-                }
+    int halfSize = grid->getSize() / 2;
+    (*blackCount) = 0;
+    (*whiteCount) = 0;
+    for (int i = 0; i < grid->getSize(); ++i) {
+        char c;
+        if (isRow) {
+            c = grid->getCell(line, i);
+        }
+        else {
+            c = grid->getCell(i, line);
+        }
+        if (c != '.') {
+            if (c == 'B') {
+                (*blackCount)++;
             }
-            char c;
-            if (row) {
-                c = _playerGrid->getCell(i, j);
+            else if (c == 'W') {
+                (*whiteCount)++;
             }
-            else {
-                c = _playerGrid->getCell(j, i);
-            }
-            if (c != '.') {
-                if (c == 'B') {
-                    count[i][0]++;
-                }
-                else if (c == 'W') {
-                    count[i][1]++;
-                }
-                if (count[i][0] > halfSize || count[i][1] > halfSize) {
-                    error = true;
-                }
-                if (last == c) {
-                    cumul++;
-                }
-                else {
-                    if (cumul > 2) {
-                        for (int k = 0; k < cumul; ++k) {
-                            if (row) {
-                                cells[i - k][j] = true;
-                            }
-                            else {
-                                cells[j][i - k] = true;
-                            }
-                            error = true;
-                        }
-                    }
-                    last = c;
-                    cumul = 1;
-                }
-            }
-            else {
+            if (*blackCount > halfSize || *whiteCount > halfSize) {
                 error = true;
             }
+            if (last == c) {
+                cumul++;
+            }
+            if (cumul == 3) {
+                cellsError[i] = true;
+                cellsError[i - 1] = true;
+                cellsError[i - 2] = true;
+            }
+            else if (cumul > 3) {
+                cellsError[i] = true;
+            }
+        }
+        else {
+            error = true;
         }
     }
     return error;
 }
 
-bool GameWindowModel::getErrors(bool ** cells, int ** lineCount, int ** columnCount) {
-    return getRowsOrColumnsErrors(cells, true, true, lineCount) || getRowsOrColumnsErrors(cells, false, false, columnCount);
+bool GameWindowModel::getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount) {
+    return lineErrors(_playerGrid, row, true, cellsErrors, whiteCount, blackCount);
+}
+
+bool GameWindowModel::getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount) {
+    return lineErrors(_playerGrid, col, false, cellsErrors, whiteCount, blackCount);
 }
 
 bool GameWindowModel::clickCell(int i, int j) {

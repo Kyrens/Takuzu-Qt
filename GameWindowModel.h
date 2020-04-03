@@ -18,7 +18,8 @@ public:
     Grid * getGameGrid();
     bool clickCell(int i, int j);
     int updatePlayTime();
-    bool getErrors(bool** errors, int ** lineCount, int ** columnCount);
+    bool getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount);
+    bool getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount);
 
 private:
     GameWindowPresenter * _presenter;
@@ -26,7 +27,6 @@ private:
     Grid * _gameGrid;
     Grid * _playerGrid;
     int _seconds = 0;
-    bool getRowsOrColumnsErrors(bool ** cells, bool row, bool initCellsAtFalse, int ** count);
 
 signals:
 
