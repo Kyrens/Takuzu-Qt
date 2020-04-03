@@ -36,6 +36,7 @@ bool lineErrors(Grid * grid, int line, bool isRow, bool * cellsError, int * whit
     (*blackCount) = 0;
     (*whiteCount) = 0;
     for (int i = 0; i < grid->getSize(); ++i) {
+        cellsError[i] = false;
         char c;
         if (isRow) {
             c = grid->getCell(line, i);

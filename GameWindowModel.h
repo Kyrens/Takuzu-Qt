@@ -15,7 +15,6 @@ public:
     ~GameWindowModel();
     void initRandomGrid();
     Grid * getPlayerGrid();
-    Grid * getGameGrid();
     bool clickCell(int i, int j);
     int updatePlayTime();
     bool getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount);
@@ -27,6 +26,7 @@ private:
     Grid * _gameGrid;
     Grid * _playerGrid;
     int _seconds = 0;
+    Grid * getGameGrid();
 
 signals:
 
