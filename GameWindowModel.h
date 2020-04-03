@@ -16,10 +16,9 @@ public:
     void initRandomGrid();
     Grid * getPlayerGrid();
     Grid * getGameGrid();
-    bool isRowValid(int row);
-    bool isColumnValid(int column);
     bool clickCell(int i, int j);
     int updatePlayTime();
+    bool getErrors(bool** errors, int ** lineCount, int ** columnCount);
 
 private:
     GameWindowPresenter * _presenter;
@@ -27,7 +26,7 @@ private:
     Grid * _gameGrid;
     Grid * _playerGrid;
     int _seconds = 0;
-    bool validateRowOrColumn(int index, bool row);
+    bool getRowsOrColumnsErrors(bool ** cells, bool row, bool initCellsAtFalse, int ** count);
 
 signals:
 

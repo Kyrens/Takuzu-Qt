@@ -47,5 +47,20 @@ void GameWindow::showInitGrid(int size) {
 
         }
     }
+}
+
+void GameWindow::refreshToken(int i, int j) {
+
+}
+
+void GameWindow::refreshLine(int line, int whiteLeft, int blackLeft) {
+
+}
+
+void GameWindow::refreshColumn(int column, int whiteLeft, int blackLeft) {
+
+}
+
+void GameWindow::refreshCellErrors(bool ** errors) {
 
 }

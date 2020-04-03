@@ -17,3 +17,17 @@ void GameWindowPresenter::timeUpdate() {
     int t = _model->updatePlayTime();
     _view->setTime(t / 60, t % 60);
 }
+
+void GameWindowPresenter::clickCell(int i, int j) {
+    if (_model->clickCell(i, j)) {
+        //Okay
+    }
+    else {
+        //Impossible, blocked
+    }
+}
+
+char GameWindowPresenter::getCell(int i, int j) {
+    return _model->getPlayerGrid()->getCell(i, j);
+}
+
