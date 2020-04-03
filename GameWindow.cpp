@@ -56,7 +56,7 @@ void GameWindow::showInitGrid(int size) {
     }
 }
 
-void GameWindow::refreshToken(int i, int j) {
+void GameWindow::refreshToken(int i, int j, char c) {
 
 }
 

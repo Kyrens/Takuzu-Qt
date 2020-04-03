@@ -19,7 +19,7 @@ public:
     ~GameWindow();
     void setTime(int min, int sec);
     void showInitGrid(int size);
-    void refreshToken(int i, int j);
+    void refreshToken(int i, int j, char c);
     void refreshLine(int line, int whiteLeft, int blackLeft);
     void refreshColumn(int column, int whiteLeft, int blackLeft);
     void refreshCellErrors(bool ** errors);
