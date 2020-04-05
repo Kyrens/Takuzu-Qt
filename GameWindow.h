@@ -20,8 +20,8 @@ public:
     void setTime(int min, int sec);
     void showInitGrid(int size);
     void refreshToken(int i, int j, char c);
-    void refreshLine(int line, bool * errors, int whiteLeft, int blackLeft);
-    void refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft);
+    void refreshLine(int line, bool * errors, int size, int whiteLeft, int blackLeft);
+    void refreshColumn(int column, bool * errors, int size, int whiteLeft, int blackLeft);
     void toggleUndoButton(bool enable);
     void updateUndoCount(int undoCount);
     void gameFinished(int undoCount, int seconds);

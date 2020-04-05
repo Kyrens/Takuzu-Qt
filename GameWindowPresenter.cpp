@@ -13,9 +13,9 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
     _view->toggleUndoButton(false);
     _view->updateUndoCount(0);
 
-    _errorsTmp = new bool[_model->getPlayerGrid()->getSize()]();
-    _linesValid = new bool[_model->getPlayerGrid()->getSize()]();
-    _columnsValid = new bool[_model->getPlayerGrid()->getSize()]();
+    _errorsTmp = new bool[size]();
+    _linesValid = new bool[size]();
+    _columnsValid = new bool[size]();
 
     for (int i = 0; i < size; ++i) {
         int whiteCount = 0;
@@ -26,7 +26,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
             else if (c == 'B') blackCount++;
             _view->refreshToken(i, j, c);
         }
-        _view->refreshLine(i, _errorsTmp, whiteCount, blackCount);
+        _view->refreshLine(i, _errorsTmp, size, whiteCount, blackCount);
     }
     for (int i = 0; i < size; ++i) {
         int whiteCount = 0;
@@ -36,7 +36,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
             if (c == 'W') whiteCount++;
             else if (c == 'B') blackCount++;
         }
-        _view->refreshColumn(i, _errorsTmp, whiteCount, blackCount);
+        _view->refreshColumn(i, _errorsTmp, size, whiteCount, blackCount);
     }
 
     QTimer * timer = new QTimer(this);
@@ -70,9 +70,9 @@ void GameWindowPresenter::updateCellErrors(int row, int col) {
     int blackCount;
     int size = _model->getPlayerGrid()->getSize();
     _linesValid[row] =!_model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
-    _view->refreshLine(row, _errorsTmp, size - whiteCount, size - blackCount);
+    _view->refreshLine(row, _errorsTmp, size, size - whiteCount, size - blackCount);
     _columnsValid[col] = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
-    _view->refreshColumn(col, _errorsTmp, size - whiteCount, size - blackCount);
+    _view->refreshColumn(col, _errorsTmp, size, size - whiteCount, size - blackCount);
     verifyGrid();
 }
 

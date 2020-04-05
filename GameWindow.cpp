@@ -100,11 +100,11 @@ void GameWindow::refreshToken(int i, int j, char c) {
     button->update();
 }
 
-void GameWindow::refreshLine(int line, bool * errors, int whiteLeft, int blackLeft) {
+void GameWindow::refreshLine(int line, bool * errors, int size, int whiteLeft, int blackLeft) {
 
 }
 
-void GameWindow::refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft) {
+void GameWindow::refreshColumn(int column, bool * errors, int size, int whiteLeft, int blackLeft) {
 
 }
 

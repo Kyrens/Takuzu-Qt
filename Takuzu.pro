@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    GridCellWidget.cpp \
         main.cpp \
         MainMenu.cpp \
     MainMenuPresenter.cpp \
@@ -36,6 +37,7 @@ SOURCES += \
     Grid.cpp
 
 HEADERS += \
+    GridCellWidget.h \
         MainMenu.h \
     MainMenuPresenter.h \
     MainMenuModel.h \
