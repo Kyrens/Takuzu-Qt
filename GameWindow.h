@@ -32,6 +32,7 @@ private:
 
 private slots:
     void clickToken();
+    void clickUndo();
 };
 
 #endif // GAMEWINDOW_H
