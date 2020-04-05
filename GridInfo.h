@@ -10,7 +10,7 @@ public:
     ~GridInfo();
     int _size;
     Difficulty _difficulty;
-    char * _fileName;
+    char * _fileName = nullptr;
 };
 
 #endif // GRIDINFO_H

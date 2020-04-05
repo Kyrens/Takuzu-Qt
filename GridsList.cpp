@@ -21,7 +21,7 @@ GridsList::GridsList(const char * fileName) {
 }
 
 GridsList::~GridsList() {
-    delete[] _gridInfo;
+    delete _gridInfo;
     for (int i = 0; i < _gridsCount; ++i) {
         delete _grids[i];
     }

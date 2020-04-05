@@ -11,7 +11,8 @@ GameWindowModel::GameWindowModel(GameWindowPresenter * gameWindowPresenter, cons
 }
 
 GameWindowModel::~GameWindowModel() {
-    delete[] _gridsList;
+    delete _gridsList;
+    delete _playerGrid;
 }
 
 void GameWindowModel::initRandomGrid() {

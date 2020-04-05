@@ -32,8 +32,8 @@ GridInfo * MainMenuPresenter::getSelectedGrid() {
 void MainMenuPresenter::gameStarted() {
     GridInfo * gridInfo = getSelectedGrid();
     if (gridInfo != nullptr) {
-        _mainMenu->close();
-        GameWindow * w = new GameWindow(gridInfo->_fileName);
+        _mainMenu->hide();
+        GameWindow * w = new GameWindow(gridInfo->_fileName, _mainMenu);
         w->show();
     }
 }

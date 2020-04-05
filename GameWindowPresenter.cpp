@@ -46,9 +46,9 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
 
 GameWindowPresenter::~GameWindowPresenter() {
     delete _model;
-    delete _errorsTmp;
-    delete _linesValid;
-    delete _columnsValid;
+    delete[] _errorsTmp;
+    delete[] _linesValid;
+    delete[] _columnsValid;
 }
 
 void GameWindowPresenter::timeUpdate() {
@@ -106,6 +106,6 @@ void GameWindowPresenter::undoLastAction() {
 
 void GameWindowPresenter::goToMainMenu() {
     _view->close();
-    MainMenu * w = new MainMenu();
-    w->show();
+    static_cast<MainMenu*>(_view->parent())->show();
+    delete _view;
 }

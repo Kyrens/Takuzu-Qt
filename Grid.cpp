@@ -13,8 +13,8 @@ Grid::Grid(int size, const char * buffer) {
 }
 
 Grid::~Grid() {
-    for (int i = 0; i < _size * _size; ++i) {
-        delete _cells[i];
+    for (int i = 0; i < _size; ++i) {
+        delete[] _cells[i];
     }
     delete[] _cells;
 }
