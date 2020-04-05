@@ -5,16 +5,14 @@
 MainMenuPresenter::MainMenuPresenter(MainMenu * mainMenu)
 {
     _mainMenu = mainMenu;
-    connect(_mainMenu->getStartButton(), SIGNAL(clicked(bool)), this, SLOT(gameStarted()));
-    connect(_mainMenu->getSizeComboBox(), SIGNAL(currentIndexChanged(QString)), this, SLOT(sizeChanged(QString)));
     _model = new MainMenuModel(this);
 }
 
 GridInfo * MainMenuPresenter::getSelectedGrid() {
-    int size = _mainMenu->getSizeComboBox()->currentText().toInt();
+    int size = _mainMenu->getSelectedSize();
     int difficulty = -1;
     for (int d = EASY; d <= HARD; ++d) {
-        if (_mainMenu->getRadioButton(static_cast<Difficulty>(d))->isChecked()) {
+        if (_mainMenu->isDifficultySelected(static_cast<Difficulty>(d))) {
             difficulty = d;
             break;
         }
@@ -68,8 +66,7 @@ void MainMenuPresenter::refreshGrids(GridInfo ** grids, int gridsCount) {
     for (int i = 0; i < gridsCount; ++i) {
         sizeList.insert(grids[i]->_size);
     }
-    _mainMenu->getSizeComboBox()->clear();
     for (std::set<int>::iterator it = sizeList.begin(); it != sizeList.end(); ++it) {
-        _mainMenu->getSizeComboBox()->addItem(QString::number(*it));
+        _mainMenu->addSize(*it);
     }
 }

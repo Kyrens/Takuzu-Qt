@@ -21,15 +21,16 @@ class MainMenu : public QMainWindow
 public:
     explicit MainMenu(QWidget *parent = 0);
     ~MainMenu();
-    QPushButton * getStartButton();
-    QComboBox * getSizeComboBox();
     void activateDifficulty(Difficulty diff);
     void disableAllDifficulties();
-    QRadioButton * getRadioButton(Difficulty diff);
+    int getSelectedSize();
+    bool isDifficultySelected(Difficulty diff);
+    void addSize(int size);
     MainMenuPresenter * _presenter;
 
 private:
     Ui::MainMenu *ui;
+    QRadioButton * getRadioButton(Difficulty diff);
 };
 
 #endif // MAINMENU_H

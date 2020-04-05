@@ -7,14 +7,10 @@ MainMenu::MainMenu(QWidget *parent) :
 {
     ui->setupUi(this);
     _presenter = new MainMenuPresenter(this);
-}
 
-QPushButton * MainMenu::getStartButton() {
-    return ui->_startButton;
-}
-
-QComboBox * MainMenu::getSizeComboBox() {
-    return ui->_sizeComboBox;
+    connect(ui->_startButton, SIGNAL(clicked(bool)), _presenter, SLOT(gameStarted()));
+    connect(ui->_sizeComboBox, SIGNAL(currentIndexChanged(QString)), _presenter, SLOT(sizeChanged(QString)));
+    _presenter->sizeChanged(ui->_sizeComboBox->currentText());
 }
 
 void MainMenu::activateDifficulty(Difficulty diff) {
@@ -40,6 +36,18 @@ void MainMenu::disableAllDifficulties() {
     ui->_hardRadioButton->setAutoExclusive(true);
     ui->_easyRadioButton->setDisabled(true);
     ui->_hardRadioButton->setDisabled(true);
+}
+
+int MainMenu::getSelectedSize() {
+    return ui->_sizeComboBox->currentText().toInt();
+}
+
+bool MainMenu::isDifficultySelected(Difficulty diff) {
+    return getRadioButton(diff)->isChecked();
+}
+
+void MainMenu::addSize(int size) {
+    ui->_sizeComboBox->addItem(QString::number(size));
 }
 
 MainMenu::~MainMenu()
