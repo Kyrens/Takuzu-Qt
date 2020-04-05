@@ -14,6 +14,8 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
     _view->updateUndoCount(0);
 
     _errorsTmp = new bool[_model->getPlayerGrid()->getSize()]();
+    _linesValid = new bool[_model->getPlayerGrid()->getSize()]();
+    _columnsValid = new bool[_model->getPlayerGrid()->getSize()]();
 
     for (int i = 0; i < size; ++i) {
         int whiteCount = 0;
@@ -47,18 +49,24 @@ void GameWindowPresenter::timeUpdate() {
     _view->setTime(t / 60, t % 60);
 }
 
+void GameWindowPresenter::verifyGrid() {
+    for (int i = 0; i < _model->getPlayerGrid()->getSize(); ++i) {
+        if (!_linesValid[i] || !_columnsValid) {
+            return;
+        }
+    }
+    _view->gameFinished(_model->getUndoCount(), _model->getTime());
+}
+
 void GameWindowPresenter::updateCellErrors(int row, int col) {
     int whiteCount;
     int blackCount;
-    bool gridValid;
     int size = _model->getPlayerGrid()->getSize();
-    gridValid = _model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
+    _linesValid[row] =!_model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
     _view->refreshLine(row, _errorsTmp, size - whiteCount, size - blackCount);
-    gridValid = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount) && gridValid;
+    _columnsValid[col] = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
     _view->refreshColumn(col, _errorsTmp, size - whiteCount, size - blackCount);
-    if (gridValid) {
-        _view->gameFinished(_model->getUndoCount(), _model->getTime());
-    }
+    verifyGrid();
 }
 
 void GameWindowPresenter::refreshCell(int i, int j) {

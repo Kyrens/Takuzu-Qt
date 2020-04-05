@@ -6,6 +6,7 @@ MainMenu::MainMenu(QWidget *parent) :
     ui(new Ui::MainMenu)
 {
     ui->setupUi(this);
+    _presenter = new MainMenuPresenter(this);
 }
 
 QPushButton * MainMenu::getStartButton() {

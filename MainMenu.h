@@ -2,10 +2,13 @@
 #define MAINMENU_H
 
 #include <QMainWindow>
-#include "QPushButton"
-#include "QComboBox"
-#include "QRadioButton"
+#include <QPushButton>
+#include <QComboBox>
+#include <QRadioButton>
 #include "GridInfo.h"
+#include "MainMenuPresenter.h"
+
+class MainMenuPresenter;
 
 namespace Ui {
 class MainMenu;
@@ -23,6 +26,7 @@ public:
     void activateDifficulty(Difficulty diff);
     void disableAllDifficulties();
     QRadioButton * getRadioButton(Difficulty diff);
+    MainMenuPresenter * _presenter;
 
 private:
     Ui::MainMenu *ui;

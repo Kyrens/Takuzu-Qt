@@ -2,6 +2,7 @@
 #include "ui_GameWindow.h"
 #include <QPixmap>
 #include <QPushButton>
+#include <QMessageBox>
 
 GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     QMainWindow(parent),
@@ -56,6 +57,8 @@ void GameWindow::showInitGrid(int size) {
                 tmp->setPalette(pal);
 
                 ui->gridLayout->addWidget(tmp, i, j, 1 ,1, Qt::AlignCenter);
+
+                connect(tmp, SIGNAL(clicked(bool)), this, SLOT(clickToken()));
             } else if (i >= size && j >= size) {
             } else {
                 QLabel* tmp = new QLabel();
@@ -110,5 +113,18 @@ void GameWindow::updateUndoCount(int undoCount) {
 }
 
 void GameWindow::gameFinished(int undoCount, int seconds) {
+    QMessageBox msgBox;
+    QString s;
+    s.append("Partie terminée\n\nTemps: ").append(QString::number(seconds)).append(" secondes\nNombre de retours en arrière: ").append(QString::number(undoCount));
+    msgBox.setText(s);
+    msgBox.exec();
+    _presenter->goToMainMenu();
+}
 
+void GameWindow::clickToken() {
+    int row;
+    int col;
+    int dump;
+    ui->gridLayout->getItemPosition(ui->gridLayout->indexOf(static_cast<QWidget*>(sender())), &row, &col, &dump, &dump);
+    _presenter->clickCell(row, col);
 }

@@ -24,6 +24,9 @@ private:
     bool * _errorsTmp;
     void updateCellErrors(int row, int col);
     void refreshCell(int i, int j);
+    bool * _linesValid;
+    bool * _columnsValid;
+    void verifyGrid();
 
 signals:
 

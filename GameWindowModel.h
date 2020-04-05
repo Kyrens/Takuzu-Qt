@@ -34,7 +34,7 @@ private:
     int _seconds = 0;
     Grid * getGameGrid();
     std::stack<std::pair<int,int>> _clickCellActionsStack;
-    int _undoCount;
+    int _undoCount = 0;
 
 signals:
 

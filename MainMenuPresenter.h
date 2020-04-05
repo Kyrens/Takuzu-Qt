@@ -7,6 +7,7 @@
 #include "GridInfo.h"
 #include <QString>
 
+class MainMenu;
 class MainMenuModel;
 
 class MainMenuPresenter : public QObject

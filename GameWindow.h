@@ -29,6 +29,9 @@ public:
 private:
     Ui::GameWindow *ui;
     GameWindowPresenter * _presenter;
+
+private slots:
+    void clickToken();
 };
 
 #endif // GAMEWINDOW_H
