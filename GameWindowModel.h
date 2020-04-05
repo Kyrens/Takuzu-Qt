@@ -24,6 +24,7 @@ public:
     std::pair<int,int> undoLastClickCellAction();
     bool canUndo();
     int getUndoCount();
+    int getTime();
 
 private:
     GameWindowPresenter * _presenter;

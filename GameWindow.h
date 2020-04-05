@@ -24,6 +24,7 @@ public:
     void refreshColumn(int column, bool * errors, int whiteLeft, int blackLeft);
     void toggleUndoButton(bool enable);
     void updateUndoCount(int undoCount);
+    void gameFinished(int undoCount, int seconds);
 
 private:
     Ui::GameWindow *ui;

@@ -1,4 +1,5 @@
 #include "GameWindowPresenter.h"
+#include "MainMenu.h"
 #include <QTimer>
 #include <utility>
 
@@ -49,11 +50,15 @@ void GameWindowPresenter::timeUpdate() {
 void GameWindowPresenter::updateCellErrors(int row, int col) {
     int whiteCount;
     int blackCount;
+    bool gridValid;
     int size = _model->getPlayerGrid()->getSize();
-    _model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
+    gridValid = _model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
     _view->refreshLine(row, _errorsTmp, size - whiteCount, size - blackCount);
-    _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
+    gridValid = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount) && gridValid;
     _view->refreshColumn(col, _errorsTmp, size - whiteCount, size - blackCount);
+    if (gridValid) {
+        _view->gameFinished(_model->getUndoCount(), _model->getTime());
+    }
 }
 
 void GameWindowPresenter::refreshCell(int i, int j) {
@@ -82,4 +87,10 @@ void GameWindowPresenter::undoLastAction() {
         _view->updateUndoCount(_model->getUndoCount());
     }
     _view->toggleUndoButton(_model->canUndo());
+}
+
+void GameWindowPresenter::goToMainMenu() {
+    _view->close();
+    MainMenu * w = new MainMenu();
+    w->show();
 }

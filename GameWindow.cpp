@@ -108,3 +108,7 @@ void GameWindow::toggleUndoButton(bool enable) {
 void GameWindow::updateUndoCount(int undoCount) {
 
 }
+
+void GameWindow::gameFinished(int undoCount, int seconds) {
+
+}

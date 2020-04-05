@@ -141,3 +141,7 @@ std::pair<int,int> GameWindowModel::undoLastClickCellAction() {
 int GameWindowModel::getUndoCount() {
     return _undoCount;
 }
+
+int GameWindowModel::getTime() {
+    return _seconds;
+}

@@ -16,6 +16,7 @@ public:
     void clickCell(int i, int j);
     char getCell(int i, int j);
     void undoLastAction();
+    void goToMainMenu();
 
 private:
     GameWindow * _view;
