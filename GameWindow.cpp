@@ -62,12 +62,15 @@ void GameWindow::showInitGrid(int size) {
             } else if (i >= size && j >= size) {
             } else {
                 QLabel* tmp = new QLabel();
-                tmp->setText("0");
+                tmp->setText(QString::number(size/2));
                 ui->gridLayout->addWidget(tmp, i, j, 1 ,1, Qt::AlignCenter);
             }
 
         }
     }
+
+    connect(ui->undoButton, SIGNAL(clicked(bool)), this, SLOT(clickUndo()));
+
 }
 
 void GameWindow::refreshToken(int i, int j, char c) {
@@ -105,11 +108,15 @@ void GameWindow::refreshColumn(int column, bool * errors, int whiteLeft, int bla
 }
 
 void GameWindow::toggleUndoButton(bool enable) {
-
+    ui->undoButton->setEnabled(enable);
 }
 
 void GameWindow::updateUndoCount(int undoCount) {
+    QString base = "Nombre de retour en arrière : ";
+    QString text;
+    text = base + QString::number(undoCount);
 
+    ui->undoLabel->setText(text);
 }
 
 void GameWindow::gameFinished(int undoCount, int seconds) {
@@ -127,4 +134,8 @@ void GameWindow::clickToken() {
     int dump;
     ui->gridLayout->getItemPosition(ui->gridLayout->indexOf(static_cast<QWidget*>(sender())), &row, &col, &dump, &dump);
     _presenter->clickCell(row, col);
+}
+
+void GameWindow::clickUndo() {
+    _presenter->undoLastAction();
 }
