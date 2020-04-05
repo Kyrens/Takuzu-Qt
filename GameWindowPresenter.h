@@ -13,6 +13,7 @@ class GameWindowPresenter : public QObject
     Q_OBJECT
 public:
     GameWindowPresenter(GameWindow * gameWindow, const char * fileName, QObject *parent = nullptr);
+    ~GameWindowPresenter();
     void clickCell(int i, int j);
     char getCell(int i, int j);
     void undoLastAction();

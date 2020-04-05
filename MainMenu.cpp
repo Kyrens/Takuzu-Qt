@@ -53,4 +53,5 @@ void MainMenu::addSize(int size) {
 MainMenu::~MainMenu()
 {
     delete ui;
+    delete _presenter;
 }

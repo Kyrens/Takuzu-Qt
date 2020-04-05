@@ -44,6 +44,13 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
     connect(timer, SIGNAL(timeout()), this, SLOT(timeUpdate()));
 }
 
+GameWindowPresenter::~GameWindowPresenter() {
+    delete _model;
+    delete _errorsTmp;
+    delete _linesValid;
+    delete _columnsValid;
+}
+
 void GameWindowPresenter::timeUpdate() {
     int t = _model->updatePlayTime();
     _view->setTime(t / 60, t % 60);
