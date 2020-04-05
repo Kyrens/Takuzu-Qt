@@ -23,6 +23,7 @@ GameWindow::GameWindow(const char * fileName, QWidget *parent) :
 GameWindow::~GameWindow()
 {
     delete ui;
+    delete _presenter;
 }
 
 void GameWindow::setTime(int min, int sec) {
