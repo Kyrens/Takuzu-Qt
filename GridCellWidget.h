@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QFrame>
+#include <QPaintEvent>
 
 class GridCellWidget : public QWidget
 {
@@ -12,6 +13,9 @@ public:
     ~GridCellWidget();
     QFrame * backGround;
     QWidget * cellWidget;
+
+protected:
+    void paintEvent(QPaintEvent * e);
 
 signals:
 

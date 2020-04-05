@@ -1,5 +1,7 @@
 #include "GameWindow.h"
 #include "ui_GameWindow.h"
+#include "GridCellToken.h"
+#include "GridCellLabel.h"
 #include <QPixmap>
 #include <QPushButton>
 #include <QMessageBox>
@@ -57,14 +59,14 @@ void GameWindow::showInitGrid(int size) {
                 tmp->setAutoFillBackground(true);
                 tmp->setPalette(pal);
 
-                ui->gridLayout->addWidget(tmp, i, j, 1 ,1, Qt::AlignCenter);
+                ui->gridLayout->addWidget(new GridCellToken(tmp, this), i, j, 1 ,1, Qt::AlignCenter);
 
                 connect(tmp, SIGNAL(clicked(bool)), this, SLOT(clickToken()));
             } else if (i >= size && j >= size) {
             } else {
                 QLabel* tmp = new QLabel();
                 tmp->setText(QString::number(size/2));
-                ui->gridLayout->addWidget(tmp, i, j, 1 ,1, Qt::AlignCenter);
+                ui->gridLayout->addWidget(new GridCellLabel(tmp, i == size + 1 || j == size + 1, this), i, j, 1 ,1, Qt::AlignCenter);
             }
 
         }
@@ -77,7 +79,8 @@ void GameWindow::showInitGrid(int size) {
 void GameWindow::refreshToken(int i, int j, char c) {
     
     QLayoutItem *item = ui->gridLayout->itemAtPosition(i, j);
-    QWidget *button = item->widget();
+    GridCellToken * cell = (GridCellToken *) item->widget();
+    QWidget *button = cell->button;
 
     QPalette pal = button->palette();
 
@@ -97,7 +100,7 @@ void GameWindow::refreshToken(int i, int j, char c) {
 
     button->setAutoFillBackground(true);
     button->setPalette(pal);
-    button->update();
+    cell->update();
 }
 
 void GameWindow::refreshLine(int line, bool * errors, int size, int whiteLeft, int blackLeft) {
@@ -133,7 +136,7 @@ void GameWindow::clickToken() {
     int row;
     int col;
     int dump;
-    ui->gridLayout->getItemPosition(ui->gridLayout->indexOf(static_cast<QWidget*>(sender())), &row, &col, &dump, &dump);
+    ui->gridLayout->getItemPosition(ui->gridLayout->indexOf(static_cast<QWidget*>(sender()->parent())), &row, &col, &dump, &dump);
     _presenter->clickCell(row, col);
 }
 
