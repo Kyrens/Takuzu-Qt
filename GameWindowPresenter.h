@@ -4,6 +4,7 @@
 #include <QObject>
 #include "GameWindow.h"
 #include "GameWindowModel.h"
+#include <QTimer>
 
 class GameWindow;
 class GameWindowModel;
@@ -18,6 +19,7 @@ public:
     char getCell(int i, int j);
     void undoLastAction();
     void goToMainMenu();
+    char getCellValue(int i, int j);
 
 private:
     GameWindow * _view;
@@ -28,6 +30,7 @@ private:
     bool * _linesValid;
     bool * _columnsValid;
     void verifyGrid();
+    QTimer * _timer;
 
 signals:
 

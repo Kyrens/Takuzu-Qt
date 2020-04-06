@@ -1,6 +1,5 @@
 #include "GameWindowPresenter.h"
 #include "MainMenu.h"
-#include <QTimer>
 #include <utility>
 
 GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * fileName, QObject *parent) : QObject(parent) {
@@ -9,6 +8,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
     _model = new GameWindowModel(this, fileName, this);
 
     int size = _model->getPlayerGrid()->getSize();
+    int halfSize = size / 2;
     _view->showInitGrid(size);
     _view->toggleUndoButton(false);
     _view->updateUndoCount(0);
@@ -26,7 +26,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
             else if (c == 'B') blackCount++;
             _view->refreshToken(i, j, c);
         }
-        _view->refreshLine(i, _errorsTmp, size, whiteCount, blackCount);
+        _view->refreshLine(i, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
     }
     for (int i = 0; i < size; ++i) {
         int whiteCount = 0;
@@ -36,12 +36,12 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
             if (c == 'W') whiteCount++;
             else if (c == 'B') blackCount++;
         }
-        _view->refreshColumn(i, _errorsTmp, size, whiteCount, blackCount);
+        _view->refreshColumn(i, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
     }
 
-    QTimer * timer = new QTimer(this);
-    timer->start(1000);
-    connect(timer, SIGNAL(timeout()), this, SLOT(timeUpdate()));
+    _timer = new QTimer(this);
+    _timer->start(1000);
+    connect(_timer, SIGNAL(timeout()), this, SLOT(timeUpdate()));
 }
 
 GameWindowPresenter::~GameWindowPresenter() {
@@ -62,6 +62,7 @@ void GameWindowPresenter::verifyGrid() {
             return;
         }
     }
+    _timer->stop();
     _view->gameFinished(_model->getUndoCount(), _model->getTime());
 }
 
@@ -69,10 +70,11 @@ void GameWindowPresenter::updateCellErrors(int row, int col) {
     int whiteCount;
     int blackCount;
     int size = _model->getPlayerGrid()->getSize();
+    int halfSize = size / 2;
     _linesValid[row] =!_model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
-    _view->refreshLine(row, _errorsTmp, size, size - whiteCount, size - blackCount);
+    _view->refreshLine(row, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
     _columnsValid[col] = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
-    _view->refreshColumn(col, _errorsTmp, size, size - whiteCount, size - blackCount);
+    _view->refreshColumn(col, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
     verifyGrid();
 }
 
@@ -83,8 +85,8 @@ void GameWindowPresenter::refreshCell(int i, int j) {
 
 void GameWindowPresenter::clickCell(int i, int j) {
     if (_model->clickCell(i, j)) {
-        refreshCell(i, j);
         _view->toggleUndoButton(true);
+        refreshCell(i, j);
     }
     else {
         //Impossible, blocked
@@ -108,4 +110,8 @@ void GameWindowPresenter::goToMainMenu() {
     _view->close();
     static_cast<MainMenu*>(_view->parent())->show();
     delete _view;
+}
+
+char GameWindowPresenter::getCellValue(int i, int j) {
+    return _model->getPlayerGrid()->getCell(i, j);
 }

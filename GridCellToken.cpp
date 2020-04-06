@@ -1,7 +1,8 @@
 #include "GridCellToken.h"
 #include <QPainter>
 #include <QStackedLayout>
-#include <QRect>
+#include <QPoint>
+#include <QPen>
 
 GridCellToken::GridCellToken(QPushButton * button, QWidget *parent) : QWidget(parent) {
     this->button = button;
@@ -15,10 +16,15 @@ GridCellToken::GridCellToken(QPushButton * button, QWidget *parent) : QWidget(pa
 void GridCellToken::paintEvent(QPaintEvent * e) {
     if (_error) {
         QPainter painter(this);
-        painter.fillRect(QRect(0, 0, 50, 50), QBrush(QColor(255, 0, 0)));
+        painter.setPen(QPen(Qt::red, 2));
+        painter.drawEllipse(QPoint(25, 25), 22, 22);
     }
 }
 
 void GridCellToken::setError(bool error) {
     _error = error;
+}
+
+bool GridCellToken::hasError() {
+    return _error;
 }

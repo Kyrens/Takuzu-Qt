@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "GridInfo.h"
 #include "GameWindowPresenter.h"
+#include <QGridLayout>
 
 namespace Ui {
 class GameWindow;
@@ -28,7 +29,8 @@ public:
 
 private:
     Ui::GameWindow *ui;
-    GameWindowPresenter * _presenter;
+    GameWindowPresenter * _presenter = nullptr;
+    bool keepError(QGridLayout * gridLayout, int i, int j, int size);
 
 private slots:
     void clickToken();

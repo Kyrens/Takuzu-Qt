@@ -2,20 +2,20 @@
 #define GRIDCELLLABEL_H
 
 #include <QWidget>
-#include <QLabel>
 
 class GridCellLabel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GridCellLabel(QLabel * label, bool black, QWidget *parent = nullptr);
-    QLabel * label;
+    explicit GridCellLabel(bool black, QWidget *parent = nullptr);
+    void setCount(int count);
 
 protected:
     void paintEvent(QPaintEvent * e);
 
 private:
     bool _black;
+    int _count = 0;
 
 signals:
 

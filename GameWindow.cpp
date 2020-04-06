@@ -64,9 +64,7 @@ void GameWindow::showInitGrid(int size) {
                 connect(tmp, SIGNAL(clicked(bool)), this, SLOT(clickToken()));
             } else if (i >= size && j >= size) {
             } else {
-                QLabel* tmp = new QLabel();
-                tmp->setText(QString::number(size/2));
-                ui->gridLayout->addWidget(new GridCellLabel(tmp, i == size + 1 || j == size + 1, this), i, j, 1 ,1, Qt::AlignCenter);
+                ui->gridLayout->addWidget(new GridCellLabel(i == size + 1 || j == size + 1, this), i, j, 1 ,1, Qt::AlignCenter);
             }
 
         }
@@ -103,12 +101,76 @@ void GameWindow::refreshToken(int i, int j, char c) {
     cell->update();
 }
 
-void GameWindow::refreshLine(int line, bool * errors, int size, int whiteLeft, int blackLeft) {
+void refreshCount(GridCellLabel * cell, int count) {
+    cell->setCount(count);
+    cell->update();
+}
 
+bool GameWindow::keepError(QGridLayout * gridLayout, int i, int j, int size) {
+    if (_presenter == nullptr) {
+        return false;
+    }
+    char currToken = _presenter->getCell(i, j);
+    for (int k = -1; k < 2; ++k) {
+        for (int l = -1; l < 2; ++l) {
+            if (i + k == -1 || j + l == -1 || i + k == size || j + l == size || (k + l != -1 && k + l != 1)) {
+                continue;
+            }
+            GridCellToken * cell = (GridCellToken *) gridLayout->itemAtPosition(i + k, j + l)->widget();
+            if (cell->hasError() && _presenter->getCell(i + k, j + l) == currToken) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void GameWindow::refreshLine(int line, bool * errors, int size, int whiteLeft, int blackLeft) {
+    refreshCount((GridCellLabel *) ui->gridLayout->itemAtPosition(line, size)->widget(), whiteLeft);
+    refreshCount((GridCellLabel *) ui->gridLayout->itemAtPosition(line, size + 1)->widget(), blackLeft);
+    for (int i = 0; i < size; ++i) {
+        bool setError = true;
+        if (!errors[i] && _presenter != nullptr) {
+            char currToken = _presenter->getCell(line, i);
+            for (int j = -1; j < 2; j += 2) {
+                if (line + j == -1 || line + j == size) {
+                    continue;
+                }
+                if (_presenter->getCell(line + j, i) == currToken && ((GridCellToken *) ui->gridLayout->itemAtPosition(line + j, i)->widget())->hasError()) {
+                    setError = false;
+                }
+            }
+        }
+        if (setError) {
+            GridCellToken * cell = (GridCellToken *) ui->gridLayout->itemAtPosition(line, i)->widget();
+            cell->setError(errors[i]);
+            cell->repaint();
+        }
+    }
 }
 
 void GameWindow::refreshColumn(int column, bool * errors, int size, int whiteLeft, int blackLeft) {
-
+    refreshCount((GridCellLabel *) ui->gridLayout->itemAtPosition(size, column)->widget(), whiteLeft);
+    refreshCount((GridCellLabel *) ui->gridLayout->itemAtPosition(size + 1, column)->widget(), blackLeft);
+    for (int i = 0; i < size; ++i) {
+        bool setError = true;
+        if (!errors[i] && _presenter != nullptr) {
+            char currToken = _presenter->getCell(i, column);
+            for (int j = -1; j < 2; j += 2) {
+                if (column + j == -1 || column + j == size) {
+                    continue;
+                }
+                if (_presenter->getCell(i, column + j) == currToken && ((GridCellToken *) ui->gridLayout->itemAtPosition(i, column + j)->widget())->hasError()) {
+                    setError = false;
+                }
+            }
+        }
+        if (setError) {
+            GridCellToken * cell = (GridCellToken *) ui->gridLayout->itemAtPosition(i, column)->widget();
+            cell->setError(errors[i]);
+            cell->repaint();
+        }
+    }
 }
 
 void GameWindow::toggleUndoButton(bool enable) {

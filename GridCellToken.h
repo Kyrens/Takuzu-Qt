@@ -11,6 +11,7 @@ public:
     explicit GridCellToken(QPushButton * button, QWidget *parent = nullptr);
     QPushButton * button;
     void setError(bool error);
+    bool hasError();
 
 protected:
     void paintEvent(QPaintEvent * e);

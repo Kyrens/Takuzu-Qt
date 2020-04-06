@@ -58,18 +58,22 @@ bool lineErrors(Grid * grid, int line, bool isRow, bool * cellsError, int * whit
             if (last == c) {
                 cumul++;
             }
-            if (cumul == 3) {
+            else {
+                cumul = 0;
+            }
+            if (cumul == 2) {
                 cellsError[i] = true;
                 cellsError[i - 1] = true;
                 cellsError[i - 2] = true;
             }
-            else if (cumul > 3) {
+            else if (cumul > 2) {
                 cellsError[i] = true;
             }
         }
         else {
             error = true;
         }
+        last = c;
     }
     return error;
 }
