@@ -16,6 +16,7 @@ GameWindowPresenter::GameWindowPresenter(GameWindow * gameWindow, const char * f
     _errorsTmp = new bool[size]();
     _linesValid = new bool[size]();
     _columnsValid = new bool[size]();
+    _sameLines = new bool[size]();
 
     for (int i = 0; i < size; ++i) {
         int whiteCount = 0;
@@ -49,6 +50,7 @@ GameWindowPresenter::~GameWindowPresenter() {
     delete[] _errorsTmp;
     delete[] _linesValid;
     delete[] _columnsValid;
+    delete[] _sameLines;
 }
 
 void GameWindowPresenter::timeUpdate() {
@@ -58,7 +60,7 @@ void GameWindowPresenter::timeUpdate() {
 
 void GameWindowPresenter::verifyGrid() {
     for (int i = 0; i < _model->getPlayerGrid()->getSize(); ++i) {
-        if (!_linesValid[i] || !_columnsValid) {
+        if (!_linesValid[i] || !_columnsValid[i]) {
             return;
         }
     }
@@ -71,10 +73,16 @@ void GameWindowPresenter::updateCellErrors(int row, int col) {
     int blackCount;
     int size = _model->getPlayerGrid()->getSize();
     int halfSize = size / 2;
-    _linesValid[row] =!_model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
+    _linesValid[row] =!_model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount, _sameLines);
     _view->refreshLine(row, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
-    _columnsValid[col] = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
+    for (int i = 0; i < size; ++i) {
+        _sameLines[i];
+    }
+    _columnsValid[col] = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount, _sameLines);
     _view->refreshColumn(col, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
+    for (int i = 0; i < size; ++i) {
+        _sameLines[i];
+    }
     verifyGrid();
 }
 
@@ -110,10 +118,6 @@ void GameWindowPresenter::goToMainMenu() {
     _view->close();
     static_cast<MainMenu*>(_view->parent())->show();
     delete _view;
-}
-
-char GameWindowPresenter::getCellValue(int i, int j) {
-    return _model->getPlayerGrid()->getCell(i, j);
 }
 
 int GameWindowPresenter::getGridSize() {

@@ -18,7 +18,6 @@ public:
     void clickCell(int i, int j);
     char getCell(int i, int j);
     void undoLastAction();
-    char getCellValue(int i, int j);
     int getGridSize();
 
 private:
@@ -29,6 +28,7 @@ private:
     void refreshCell(int i, int j);
     bool * _linesValid;
     bool * _columnsValid;
+    bool * _sameLines;
     void verifyGrid();
     QTimer * _timer;
 
