@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QPushButton>
 #include <QMessageBox>
+#include "MainMenu.h"
 
 GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     QMainWindow(parent),
@@ -193,4 +194,8 @@ void GameWindow::clickToken() {
 
 void GameWindow::clickUndo() {
     _presenter->undoLastAction();
+}
+
+void GameWindow::closeEvent(QCloseEvent * event) {
+    static_cast<MainMenu*>(parent())->show();
 }

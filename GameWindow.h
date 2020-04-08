@@ -30,6 +30,9 @@ public:
     void updateUndoCount(int undoCount);
     void gameFinished(int undoCount, int seconds);
 
+protected:
+    void closeEvent(QCloseEvent * event);
+
 private:
     Ui::GameWindow *ui;
     GameWindowPresenter * _presenter = nullptr;

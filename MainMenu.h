@@ -28,6 +28,9 @@ public:
     void addSize(int size);
     MainMenuPresenter * _presenter;
 
+protected:
+    void closeEvent(QCloseEvent * event);
+
 private:
     Ui::MainMenu *ui;
     QRadioButton * getRadioButton(Difficulty diff);

@@ -1,6 +1,7 @@
 #include "MainMenu.h"
 #include "ui_MainMenu.h"
 #include "MenuBar.h"
+#include <cstdlib>
 
 MainMenu::MainMenu(QWidget *parent) :
     QMainWindow(parent),
@@ -54,6 +55,10 @@ bool MainMenu::isDifficultySelected(Difficulty diff) {
 
 void MainMenu::addSize(int size) {
     ui->_sizeComboBox->addItem(QString::number(size));
+}
+
+void MainMenu::closeEvent(QCloseEvent * event) {
+    std::exit(0);
 }
 
 MainMenu::~MainMenu()
