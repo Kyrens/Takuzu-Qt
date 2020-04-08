@@ -102,7 +102,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="font">
@@ -127,8 +127,8 @@
     <property name="title">
      <string>&amp;Aide</string>
     </property>
-    <addaction name="actionR_gles_du_jeu"/>
-    <addaction name="action_propos"/>
+    <addaction name="actionRegles_du_jeu"/>
+    <addaction name="actionApropos"/>
    </widget>
    <addaction name="menu_Jeu"/>
    <addaction name="menu_Aide"/>
@@ -148,12 +148,12 @@
     <string>&amp;Quitter</string>
    </property>
   </action>
-  <action name="actionR_gles_du_jeu">
+  <action name="actionRegles_du_jeu">
    <property name="text">
     <string>&amp;Règles du jeu</string>
    </property>
   </action>
-  <action name="action_propos">
+  <action name="actionApropos">
    <property name="text">
     <string>&amp;À propos</string>
    </property>

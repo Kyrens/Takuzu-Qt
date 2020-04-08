@@ -1,11 +1,18 @@
 #ifndef MENUBAR_H
 #define MENUBAR_H
 
-/*
-class MenuBar
+#include <QObject>
+#include "GameWindowPresenter.h"
+
+class MenuBar : public QObject
 {
+    Q_OBJECT
 public:
-    MenuBar();
+    MenuBar(GameWindowPresenter * presenter = nullptr);
+    ~MenuBar();
+
+private:
+    GameWindowPresenter * _presenter;
 
 public slots:
     void newGame();
@@ -13,5 +20,5 @@ public slots:
     void rules();
     void about();
 };
-*/
+
 #endif // MENUBAR_H

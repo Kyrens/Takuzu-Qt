@@ -12,11 +12,11 @@ MainMenu::MainMenu(QWidget *parent) :
     connect(ui->_startButton, SIGNAL(clicked(bool)), _presenter, SLOT(gameStarted()));
     connect(ui->_sizeComboBox, SIGNAL(currentIndexChanged(QString)), _presenter, SLOT(sizeChanged(QString)));
     _presenter->sizeChanged(ui->_sizeComboBox->currentText());
-/*
-    connect(ui->actionQuitter, SIGNAL(triggered(bool)), this, SLOT(MenuBar::quit()));
-    connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), this, SLOT(MenuBar::rules()));
-    connect(ui->actionApropos, SIGNAL(triggered(bool)), this, SLOT(MenuBar::about()));
-    */
+
+    MenuBar * menuBar = new MenuBar();
+    connect(ui->actionQuitter, SIGNAL(triggered(bool)), menuBar, SLOT(quit()));
+    connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), menuBar, SLOT(rules()));
+    connect(ui->actionApropos, SIGNAL(triggered(bool)), menuBar, SLOT(about()));
 }
 
 void MainMenu::activateDifficulty(Difficulty diff) {

@@ -20,12 +20,12 @@ GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     ui->centralwidget->update();
 
     _presenter = new GameWindowPresenter(this, fileName, this);
-/*
-    connect(ui->actionNouvelle_partie, SIGNAL(triggered(bool)), this, SLOT(MenuBar::newGame()));
-    connect(ui->actionQuitter, SIGNAL(triggered(bool)), this, SLOT(MenuBar::quit()));
-    connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), this, SLOT(MenuBar::rules()));
-    connect(ui->actionApropos, SIGNAL(triggered(bool)), this, SLOT(MenuBar::about()));
-    */
+
+    MenuBar * menuBar = new MenuBar(_presenter);
+    connect(ui->actionNouvelle_partie, SIGNAL(triggered(bool)), menuBar, SLOT(newGame()));
+    connect(ui->actionQuitter, SIGNAL(triggered(bool)), menuBar, SLOT(quit()));
+    connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), menuBar, SLOT(rules()));
+    connect(ui->actionApropos, SIGNAL(triggered(bool)), menuBar, SLOT(about()));
 }
 
 GameWindow::~GameWindow()
@@ -197,6 +197,7 @@ void GameWindow::gameFinished(int undoCount, int seconds) {
     QMessageBox msgBox;
     QString s;
     s.append("Partie terminée\n\nTemps: ").append(QString::number(seconds)).append(" secondes\nNombre de retours en arrière: ").append(QString::number(undoCount));
+    msgBox.setWindowTitle("Partie terminée");
     msgBox.setText(s);
     msgBox.exec();
     _presenter->goToMainMenu();
