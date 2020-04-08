@@ -63,7 +63,7 @@ void GameWindow::refreshTokensStyle(int size, TokenStyle style) {
             cell->setStyle(style);
             cell->initToken();
             if (_presenter != nullptr) {
-                cell->refreshToken(_presenter->getCellValue(i,j));
+                cell->refreshToken(_presenter->getCell(i,j));
             }
         }
     }

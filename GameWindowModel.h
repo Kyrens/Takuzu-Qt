@@ -19,8 +19,8 @@ public:
     Grid * getPlayerGrid();
     bool clickCell(int i, int j);
     int updatePlayTime();
-    bool getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount);
-    bool getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount);
+    bool getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount, bool * sameRows);
+    bool getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount, bool * sameColumns);
     std::pair<int,int> undoLastClickCellAction();
     bool canUndo();
     int getUndoCount();
