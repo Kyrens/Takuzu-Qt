@@ -189,8 +189,11 @@ void GameWindow::updateStatus(bool error) {
     QString text;
     if (error) {
         text = "Status : Il y a des lignes ou des colonnes identiques.";
+        ui->statusLabel->setStyleSheet("color: red;");
     } else {
         text = "Status : Aucune ligne ou colonne identique.";
+        ui->statusLabel->setStyleSheet("color: black;");
+
     }
 
     ui->statusLabel->setText(text);
