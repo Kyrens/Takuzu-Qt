@@ -18,7 +18,6 @@ public:
     void clickCell(int i, int j);
     char getCell(int i, int j);
     void undoLastAction();
-    void goToMainMenu();
     char getCellValue(int i, int j);
 
 private:
@@ -36,6 +35,7 @@ signals:
 
 public slots:
     void timeUpdate();
+    void goToMainMenu();
 };
 
 #endif // GAMEWINDOWPRESENTER_H

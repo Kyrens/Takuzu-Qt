@@ -5,6 +5,9 @@
 #include "GridInfo.h"
 #include "GameWindowPresenter.h"
 #include <QGridLayout>
+#include "MenuBar.h"
+
+class MenuBar;
 
 namespace Ui {
 class GameWindow;
@@ -31,6 +34,7 @@ private:
     Ui::GameWindow *ui;
     GameWindowPresenter * _presenter = nullptr;
     bool keepError(QGridLayout * gridLayout, int i, int j, int size);
+    MenuBar * _menuBar;
 
 private slots:
     void clickToken();

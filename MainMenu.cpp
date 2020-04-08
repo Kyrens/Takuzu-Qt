@@ -13,7 +13,7 @@ MainMenu::MainMenu(QWidget *parent) :
     connect(ui->_sizeComboBox, SIGNAL(currentIndexChanged(QString)), _presenter, SLOT(sizeChanged(QString)));
     _presenter->sizeChanged(ui->_sizeComboBox->currentText());
 
-    MenuBar * menuBar = new MenuBar();
+    MenuBar * menuBar = new MenuBar(parent);
     connect(ui->actionQuitter, SIGNAL(triggered(bool)), menuBar, SLOT(quit()));
     connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), menuBar, SLOT(rules()));
     connect(ui->actionApropos, SIGNAL(triggered(bool)), menuBar, SLOT(about()));
