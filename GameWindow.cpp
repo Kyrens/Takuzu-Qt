@@ -1,6 +1,5 @@
 #include "GameWindow.h"
 #include "ui_GameWindow.h"
-#include "GridCellToken.h"
 #include "GridCellLabel.h"
 #include <QPixmap>
 #include <QPushButton>
@@ -48,11 +47,12 @@ void GameWindow::setTime(int min, int sec) {
     ui->timeLabel->setText(s);
 }
 
-void GameWindow::refreshTokensStyle(int size) {
+void GameWindow::refreshTokensStyle(int size, TokenStyle style) {
     for(int i = 0; i < size; i++) {
         for(int j = 0; j < size; j++) {
             QLayoutItem *item = ui->gridLayout->itemAtPosition(i, j);
             GridCellToken * cell = (GridCellToken *) item->widget();
+            cell->setStyle(style);
             cell->initToken();
         }
     }
@@ -75,7 +75,7 @@ void GameWindow::showInitGrid(int size) {
         }
     }
 
-    refreshTokensStyle(size);
+    refreshTokensStyle(size, CIRCLE);
 
     connect(ui->undoButton, SIGNAL(clicked(bool)), this, SLOT(clickUndo()));
 

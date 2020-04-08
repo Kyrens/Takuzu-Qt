@@ -17,7 +17,14 @@ void GridCellToken::paintEvent(QPaintEvent * e) {
     if (_error) {
         QPainter painter(this);
         painter.setPen(QPen(Qt::red, 2));
-        painter.drawEllipse(QPoint(25, 25), 22, 22);
+        switch (_style) {
+            case SQUARE:
+                painter.drawRect(3, 3, 44, 44);
+                break;
+            default:
+                painter.drawEllipse(QPoint(25, 25), 22, 22);
+                break;
+        }
     }
 }
 
@@ -25,7 +32,15 @@ void GridCellToken::initToken() {
     button->setFixedHeight(50);
     button->setFixedWidth(50);
     QRect rect(5,5,40,40);
-    QRegion region(rect, QRegion::Ellipse);
+    QRegion region;
+    switch (_style) {
+        case SQUARE:
+            region = QRegion(rect, QRegion::Rectangle);
+            break;
+        default:
+            region = QRegion(rect, QRegion::Ellipse);
+            break;
+    }
     button->setMask(region);
 
     QPalette pal = button->palette();
@@ -63,4 +78,8 @@ void GridCellToken::setError(bool error) {
 
 bool GridCellToken::hasError() {
     return _error;
+}
+
+void GridCellToken::setStyle(TokenStyle style) {
+    _style = style;
 }

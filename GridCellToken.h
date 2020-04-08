@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 
+enum TokenStyle { CIRCLE, SQUARE };
+
 class GridCellToken : public QWidget
 {
     Q_OBJECT
@@ -13,6 +15,7 @@ public:
     void setError(bool error);
     bool hasError();
     void initToken();
+    void setStyle(TokenStyle style);
     void refreshToken(char c);
 
 protected:
@@ -20,6 +23,7 @@ protected:
 
 private:
     bool _error = false;
+    TokenStyle _style = CIRCLE;
 
 signals:
 

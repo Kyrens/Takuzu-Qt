@@ -6,6 +6,7 @@
 #include "GameWindowPresenter.h"
 #include <QGridLayout>
 #include "MenuBar.h"
+#include "GridCellToken.h"
 
 class MenuBar;
 
@@ -38,7 +39,7 @@ private:
     GameWindowPresenter * _presenter = nullptr;
     bool keepError(QGridLayout * gridLayout, int i, int j, int size);
     MenuBar * _menuBar;
-    void refreshTokensStyle(int size);
+    void refreshTokensStyle(int size, TokenStyle style);
 
 private slots:
     void clickToken();
