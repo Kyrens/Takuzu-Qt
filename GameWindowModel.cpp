@@ -29,7 +29,7 @@ Grid * GameWindowModel::getGameGrid() {
     return _gameGrid;
 }
 
-bool lineErrors(Grid * grid, int line, bool isRow, bool * cellsError, int * whiteCount, int * blackCount, bool * sameLines) {
+bool lineErrors(Grid * grid, int line, bool isRow, bool * cellsError, int * whiteCount, int * blackCount) {
     bool error = false;
     char last = '.';
     int cumul = 0;
@@ -76,32 +76,15 @@ bool lineErrors(Grid * grid, int line, bool isRow, bool * cellsError, int * whit
         }
         last = c;
     }
-    if (*blackCount == halfSize && *whiteCount == halfSize) {
-        for (int i = 0; i < grid->getSize(); ++i) {
-            sameLines[i] = false;
-            if (i != line) {
-                int j;
-                for (j = 0; j < grid->getSize(); ++j) {
-                    if ((isRow && grid->getCell(line, j) != grid->getCell(i, j)) || (!isRow && grid->getCell(j, line) != grid->getCell(j, i))) {
-                       break;
-                    }
-                }
-                if (j == grid->getSize()) {
-                    sameLines[i] = true;
-                    error = true;
-                }
-            }
-        }
-    }
     return error;
 }
 
-bool GameWindowModel::getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount, bool * sameRows) {
-    return lineErrors(_playerGrid, row, true, cellsErrors, whiteCount, blackCount, sameRows);
+bool GameWindowModel::getRowErrors(bool * cellsErrors, int row, int * whiteCount, int * blackCount) {
+    return lineErrors(_playerGrid, row, true, cellsErrors, whiteCount, blackCount);
 }
 
-bool GameWindowModel::getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount, bool * sameColumns) {
-    return lineErrors(_playerGrid, col, false, cellsErrors, whiteCount, blackCount, sameColumns);
+bool GameWindowModel::getColumnErrors(bool * cellsErrors, int col, int * whiteCount, int * blackCount) {
+    return lineErrors(_playerGrid, col, false, cellsErrors, whiteCount, blackCount);
 }
 
 bool GameWindowModel::clickCell(int i, int j) {
@@ -167,4 +150,53 @@ int GameWindowModel::getUndoCount() {
 
 int GameWindowModel::getTime() {
     return _seconds;
+}
+
+bool GameWindowModel::areTwoLinesIdentical() {
+    int size = _playerGrid->getSize();
+    for (int i = 0; i < size - 1; ++i) {
+        bool dontCheckLine = false;
+        for (int j = i + 1; j < size; ++j) {
+            int k;
+            for (k = 0; k < size; ++k) {
+                char cell = _playerGrid->getCell(i, k);
+                if (cell == '.') {
+                    dontCheckLine = true;
+                    break;
+                }
+                if (cell != _playerGrid->getCell(j, k)) {
+                    break;
+                }
+            }
+            if (dontCheckLine) {
+                break;
+            }
+            if (k == size) {
+                return true;
+            }
+        }
+    }
+    for (int i = 0; i < size - 1; ++i) {
+        bool dontCheckLine = false;
+        for (int j = i + 1; j < size; ++j) {
+            int k;
+            for (k = 0; k < size; ++k) {
+                char cell = _playerGrid->getCell(k, i);
+                if (cell == '.') {
+                    dontCheckLine = true;
+                    break;
+                }
+                if (_playerGrid->getCell(k, i) != _playerGrid->getCell(k, j)) {
+                    break;
+                }
+            }
+            if (dontCheckLine) {
+                break;
+            }
+            if (k == size) {
+                return true;
+            }
+        }
+    }
+    return false;
 }

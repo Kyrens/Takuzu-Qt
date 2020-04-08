@@ -28,7 +28,6 @@ private:
     void refreshCell(int i, int j);
     bool * _linesValid;
     bool * _columnsValid;
-    bool * _sameLines;
     void verifyGrid();
     QTimer * _timer;
 
