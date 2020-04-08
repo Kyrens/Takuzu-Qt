@@ -1,11 +1,11 @@
 #ifndef MENUBAR_H
 #define MENUBAR_H
 
+#include <QObject>
 
-class MenuBar
+class MenuBar : public QObject
 {
-public:
-    MenuBar();
+    Q_OBJECT
 
 public slots:
     void newGame();

@@ -189,6 +189,7 @@ void GameWindow::gameFinished(int undoCount, int seconds) {
     QMessageBox msgBox;
     QString s;
     s.append("Partie terminée\n\nTemps: ").append(QString::number(seconds)).append(" secondes\nNombre de retours en arrière: ").append(QString::number(undoCount));
+    msgBox.setWindowTitle("Partie terminée");
     msgBox.setText(s);
     msgBox.exec();
     _presenter->goToMainMenu();
