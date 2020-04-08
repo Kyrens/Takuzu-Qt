@@ -1,5 +1,5 @@
 #include "MenuBar.h"
-
+/*
 MenuBar::MenuBar() {}
 
 void MenuBar::newGame() {
@@ -17,3 +17,4 @@ void MenuBar::rules() {
 void MenuBar::about() {
 
 }
+*/

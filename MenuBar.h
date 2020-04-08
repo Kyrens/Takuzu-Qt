@@ -1,7 +1,7 @@
 #ifndef MENUBAR_H
 #define MENUBAR_H
 
-
+/*
 class MenuBar
 {
 public:
@@ -13,5 +13,5 @@ public slots:
     void rules();
     void about();
 };
-
+*/
 #endif // MENUBAR_H

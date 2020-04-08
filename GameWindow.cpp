@@ -20,11 +20,12 @@ GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     ui->centralwidget->update();
 
     _presenter = new GameWindowPresenter(this, fileName, this);
-
+/*
     connect(ui->actionNouvelle_partie, SIGNAL(triggered(bool)), this, SLOT(MenuBar::newGame()));
     connect(ui->actionQuitter, SIGNAL(triggered(bool)), this, SLOT(MenuBar::quit()));
     connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), this, SLOT(MenuBar::rules()));
     connect(ui->actionApropos, SIGNAL(triggered(bool)), this, SLOT(MenuBar::about()));
+    */
 }
 
 GameWindow::~GameWindow()
@@ -77,6 +78,8 @@ void GameWindow::showInitGrid(int size) {
 
     connect(ui->undoButton, SIGNAL(clicked(bool)), this, SLOT(clickUndo()));
 
+    QSize s = ui->verticalLayout->sizeHint();
+    this->resize(s.width() +20, s.height() +40);
 }
 
 void GameWindow::refreshToken(int i, int j, char c) {
