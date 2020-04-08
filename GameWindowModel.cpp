@@ -65,6 +65,7 @@ bool lineErrors(Grid * grid, int line, bool isRow, bool * cellsError, int * whit
                 cellsError[i] = true;
                 cellsError[i - 1] = true;
                 cellsError[i - 2] = true;
+                error = true;
             }
             else if (cumul > 2) {
                 cellsError[i] = true;
