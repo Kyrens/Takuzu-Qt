@@ -1,4 +1,5 @@
 #include "MenuBar.h"
+
 #include <cstdlib>
 #include <QMessageBox>
 

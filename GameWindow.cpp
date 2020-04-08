@@ -78,6 +78,8 @@ void GameWindow::showInitGrid(int size) {
 
     connect(ui->undoButton, SIGNAL(clicked(bool)), this, SLOT(clickUndo()));
 
+    QSize s = ui->verticalLayout->sizeHint();
+    this->resize(s.width() +20, s.height() +40);
 }
 
 void GameWindow::refreshToken(int i, int j, char c) {
