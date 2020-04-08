@@ -2,8 +2,14 @@
 #include <cstdlib>
 #include <QMessageBox>
 
-void MenuBar::newGame() {
+MenuBar::MenuBar(GameWindowPresenter * presenter) {
+    _presenter = presenter;
+}
 
+MenuBar::~MenuBar() {}
+
+void MenuBar::newGame() {
+    _presenter->goToMainMenu();
 }
 
 void MenuBar::quit() {
