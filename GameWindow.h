@@ -29,6 +29,7 @@ public:
     void refreshColumn(int column, bool * errors, int size, int whiteLeft, int blackLeft);
     void toggleUndoButton(bool enable);
     void updateUndoCount(int undoCount);
+    void updateStatus(bool error);
     void gameFinished(int undoCount, int seconds);
 
 protected:

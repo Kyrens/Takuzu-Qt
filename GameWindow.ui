@@ -93,6 +93,24 @@
      <item>
       <layout class="QGridLayout" name="gridLayout"/>
      </item>
+     <item>
+      <widget class="QLabel" name="statusLabel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Ubuntu Mono</family>
+        </font>
+       </property>
+       <property name="text">
+        <string>Status : Aucune ligne ou colonne identique.</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
