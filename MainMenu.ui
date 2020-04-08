@@ -191,7 +191,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
@@ -203,31 +203,20 @@
     <property name="title">
      <string>&amp;Jeu</string>
     </property>
-    <addaction name="actionNouvelle_partie"/>
     <addaction name="separator"/>
-    <addaction name="action_Quitter"/>
+    <addaction name="actionQuitter"/>
    </widget>
    <widget class="QMenu" name="menuAide">
     <property name="title">
      <string>&amp;Aide</string>
     </property>
-    <addaction name="actionR_gles_du_jeu"/>
-    <addaction name="action_propos"/>
+    <addaction name="actionRegles_du_jeu"/>
+    <addaction name="actionApropos"/>
    </widget>
    <addaction name="menuJeu"/>
    <addaction name="menuAide"/>
   </widget>
-  <action name="actionNouvelle_partie">
-   <property name="text">
-    <string>&amp;Nouvelle partie ...</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Ubuntu Mono</family>
-    </font>
-   </property>
-  </action>
-  <action name="action_Quitter">
+  <action name="actionQuitter">
    <property name="text">
     <string>&amp;Quitter</string>
    </property>
@@ -237,7 +226,7 @@
     </font>
    </property>
   </action>
-  <action name="actionR_gles_du_jeu">
+  <action name="actionRegles_du_jeu">
    <property name="text">
     <string>&amp;Règles du jeu</string>
    </property>
@@ -247,7 +236,7 @@
     </font>
    </property>
   </action>
-  <action name="action_propos">
+  <action name="actionApropos">
    <property name="text">
     <string>&amp;À propos</string>
    </property>
