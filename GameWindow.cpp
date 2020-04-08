@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QPushButton>
 #include <QMessageBox>
+#include "MenuBar.h"
 
 GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +21,10 @@ GameWindow::GameWindow(const char * fileName, QWidget *parent) :
 
     _presenter = new GameWindowPresenter(this, fileName, this);
 
+    connect(ui->actionNouvelle_partie, SIGNAL(triggered(bool)), this, SLOT(MenuBar::newGame()));
+    connect(ui->actionQuitter, SIGNAL(triggered(bool)), this, SLOT(MenuBar::quit()));
+    connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), this, SLOT(MenuBar::rules()));
+    connect(ui->actionApropos, SIGNAL(triggered(bool)), this, SLOT(MenuBar::about()));
 }
 
 GameWindow::~GameWindow()
