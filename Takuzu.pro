@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     GridCellLabel.cpp \
     GridCellToken.cpp \
+    MenuBar.cpp \
         main.cpp \
         MainMenu.cpp \
     MainMenuPresenter.cpp \
@@ -48,7 +49,8 @@ HEADERS += \
     GridsList.h \
     GameWindowPresenter.h \
     GameWindowModel.h \
-    Grid.h
+    Grid.h \
+    MenuBar.h
 
 FORMS += \
         MainMenu.ui \
