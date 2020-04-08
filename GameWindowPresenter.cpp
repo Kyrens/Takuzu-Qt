@@ -76,7 +76,7 @@ void GameWindowPresenter::updateCellErrors(int row, int col) {
     int halfSize = size / 2;
     _linesValid[row] =!_model->getRowErrors(_errorsTmp, row, &whiteCount, &blackCount);
     _view->refreshLine(row, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
-    _columnsValid[col] = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
+    _columnsValid[col] = !_model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
     _view->refreshColumn(col, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
     _identicalLines = _model->areTwoLinesIdentical();
     _view->updateStatus(_identicalLines);
