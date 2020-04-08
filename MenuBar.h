@@ -23,6 +23,7 @@ public slots:
     void quit();
     void rules();
     void about();
+
 };
 
 #endif // MENUBAR_H

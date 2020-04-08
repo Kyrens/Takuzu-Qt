@@ -102,7 +102,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
@@ -130,8 +130,16 @@
     <addaction name="actionRegles_du_jeu"/>
     <addaction name="actionApropos"/>
    </widget>
+   <widget class="QMenu" name="menu_Style">
+    <property name="title">
+     <string>&amp;Style</string>
+    </property>
+    <addaction name="actionCercle"/>
+    <addaction name="actionCarre"/>
+   </widget>
    <addaction name="menu_Jeu"/>
    <addaction name="menu_Aide"/>
+   <addaction name="menu_Style"/>
   </widget>
   <action name="actionNouvelle_partie">
    <property name="text">
@@ -147,6 +155,11 @@
    <property name="text">
     <string>&amp;Quitter</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
+   </property>
   </action>
   <action name="actionRegles_du_jeu">
    <property name="text">
@@ -156,6 +169,26 @@
   <action name="actionApropos">
    <property name="text">
     <string>&amp;À propos</string>
+   </property>
+  </action>
+  <action name="actionCercle">
+   <property name="text">
+    <string>Cercle</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
+   </property>
+  </action>
+  <action name="actionCarre">
+   <property name="text">
+    <string>Carré</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Ubuntu Mono</family>
+    </font>
    </property>
   </action>
  </widget>

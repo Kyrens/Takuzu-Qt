@@ -25,6 +25,14 @@ GameWindow::GameWindow(const char * fileName, QWidget *parent) :
     connect(ui->actionQuitter, SIGNAL(triggered(bool)), _menuBar, SLOT(quit()));
     connect(ui->actionRegles_du_jeu, SIGNAL(triggered(bool)), _menuBar, SLOT(rules()));
     connect(ui->actionApropos, SIGNAL(triggered(bool)), _menuBar, SLOT(about()));
+
+    ui->actionCercle->setCheckable(true);
+    ui->actionCercle->setChecked(true);
+    ui->actionCercle->setDisabled(true);
+    ui->actionCarre->setCheckable(true);
+    connect(ui->actionCercle, SIGNAL(triggered(bool)), this, SLOT(styleCircle()));
+    connect(ui->actionCarre, SIGNAL(triggered(bool)), this, SLOT(styleSquare()));
+
 }
 
 GameWindow::~GameWindow()
@@ -54,6 +62,9 @@ void GameWindow::refreshTokensStyle(int size, TokenStyle style) {
             GridCellToken * cell = (GridCellToken *) item->widget();
             cell->setStyle(style);
             cell->initToken();
+            if (_presenter != nullptr) {
+                cell->refreshToken(_presenter->getCellValue(i,j));
+            }
         }
     }
 }
@@ -198,4 +209,18 @@ void GameWindow::clickUndo() {
 
 void GameWindow::closeEvent(QCloseEvent * event) {
     static_cast<MainMenu*>(parent())->show();
+}
+
+void GameWindow::styleCircle() {
+    ui->actionCarre->setChecked(false);
+    ui->actionCarre->setDisabled(false);
+    ui->actionCercle->setDisabled(true);
+    refreshTokensStyle(_presenter->getGridSize(), CIRCLE);
+}
+
+void GameWindow::styleSquare() {
+    ui->actionCercle->setChecked(false);
+    ui->actionCarre->setDisabled(true);
+    ui->actionCercle->setDisabled(false);
+    refreshTokensStyle(_presenter->getGridSize(), SQUARE);
 }

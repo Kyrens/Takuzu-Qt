@@ -44,6 +44,9 @@ private:
 private slots:
     void clickToken();
     void clickUndo();
+
+    void styleCircle();
+    void styleSquare();
 };
 
 #endif // GAMEWINDOW_H
