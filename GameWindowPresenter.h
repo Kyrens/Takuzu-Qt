@@ -30,6 +30,7 @@ private:
     bool * _columnsValid;
     void verifyGrid();
     QTimer * _timer;
+    bool _identicalLines = false;
 
 signals:
 

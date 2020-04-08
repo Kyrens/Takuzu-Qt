@@ -57,6 +57,9 @@ void GameWindowPresenter::timeUpdate() {
 }
 
 void GameWindowPresenter::verifyGrid() {
+    if (_identicalLines) {
+        return;
+    }
     for (int i = 0; i < _model->getPlayerGrid()->getSize(); ++i) {
         if (!_linesValid[i] || !_columnsValid[i]) {
             return;
@@ -75,7 +78,8 @@ void GameWindowPresenter::updateCellErrors(int row, int col) {
     _view->refreshLine(row, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
     _columnsValid[col] = _model->getColumnErrors(_errorsTmp, col, &whiteCount, &blackCount);
     _view->refreshColumn(col, _errorsTmp, size, halfSize - whiteCount, halfSize - blackCount);
-    _view->updateStatus(_model->areTwoLinesIdentical());
+    _identicalLines = _model->areTwoLinesIdentical();
+    _view->updateStatus(_identicalLines);
 
     verifyGrid();
 }
