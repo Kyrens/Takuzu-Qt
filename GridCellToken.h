@@ -8,10 +8,12 @@ class GridCellToken : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GridCellToken(QPushButton * button, QWidget *parent = nullptr);
+    explicit GridCellToken(QWidget *parent = nullptr);
     QPushButton * button;
     void setError(bool error);
     bool hasError();
+    void initToken();
+    void refreshToken(char c);
 
 protected:
     void paintEvent(QPaintEvent * e);

@@ -19,6 +19,7 @@ public:
     char getCell(int i, int j);
     void undoLastAction();
     char getCellValue(int i, int j);
+    int getGridSize();
 
 private:
     GameWindow * _view;

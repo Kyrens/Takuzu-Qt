@@ -47,34 +47,34 @@ void GameWindow::setTime(int min, int sec) {
     ui->timeLabel->setText(s);
 }
 
+void GameWindow::refreshTokensStyle(int size) {
+    for(int i = 0; i < size; i++) {
+        for(int j = 0; j < size; j++) {
+            QLayoutItem *item = ui->gridLayout->itemAtPosition(i, j);
+            GridCellToken * cell = (GridCellToken *) item->widget();
+            cell->initToken();
+        }
+    }
+}
+
 void GameWindow::showInitGrid(int size) {
     for(int i = 0; i < size + 2; i++) {
         for(int j = 0; j < size + 2; j++) {
             if (i < size && j < size) {
 
-                QPushButton* tmp = new QPushButton();
+                GridCellToken * cellToken = new GridCellToken(this);
 
-                tmp->setFixedHeight(50);
-                tmp->setFixedWidth(50);
-                QRect rect(5,5,40,40);
-                QRegion region(rect, QRegion::Ellipse);
-                tmp->setMask(region);
+                ui->gridLayout->addWidget(cellToken, i, j, 1 ,1, Qt::AlignCenter);
 
-                QPalette pal = tmp->palette();
-                pal.setColor(QPalette::Button, QColor(Qt::gray));
-                tmp->setAutoFillBackground(true);
-                tmp->setPalette(pal);
-
-                ui->gridLayout->addWidget(new GridCellToken(tmp, this), i, j, 1 ,1, Qt::AlignCenter);
-
-                connect(tmp, SIGNAL(clicked(bool)), this, SLOT(clickToken()));
+                connect(cellToken->button, SIGNAL(clicked(bool)), this, SLOT(clickToken()));
             } else if (i >= size && j >= size) {
             } else {
                 ui->gridLayout->addWidget(new GridCellLabel(i == size + 1 || j == size + 1, this), i, j, 1 ,1, Qt::AlignCenter);
             }
-
         }
     }
+
+    refreshTokensStyle(size);
 
     connect(ui->undoButton, SIGNAL(clicked(bool)), this, SLOT(clickUndo()));
 
@@ -86,27 +86,7 @@ void GameWindow::refreshToken(int i, int j, char c) {
     
     QLayoutItem *item = ui->gridLayout->itemAtPosition(i, j);
     GridCellToken * cell = (GridCellToken *) item->widget();
-    QWidget *button = cell->button;
-
-    QPalette pal = button->palette();
-
-    switch (c) {
-    case '.':
-        pal.setColor(QPalette::Button, QColor(Qt::gray));
-        break;
-    case 'W':
-        pal.setColor(QPalette::Button, QColor(Qt::white));
-        break;
-    case 'B':
-        pal.setColor(QPalette::Button, QColor(Qt::black));
-        break;
-    default:
-        break;
-    }
-
-    button->setAutoFillBackground(true);
-    button->setPalette(pal);
-    cell->update();
+    cell->refreshToken(c);
 }
 
 void refreshCount(GridCellLabel * cell, int count) {

@@ -115,3 +115,7 @@ void GameWindowPresenter::goToMainMenu() {
 char GameWindowPresenter::getCellValue(int i, int j) {
     return _model->getPlayerGrid()->getCell(i, j);
 }
+
+int GameWindowPresenter::getGridSize() {
+    return _model->getPlayerGrid()->getSize();
+}

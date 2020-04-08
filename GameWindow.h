@@ -35,6 +35,7 @@ private:
     GameWindowPresenter * _presenter = nullptr;
     bool keepError(QGridLayout * gridLayout, int i, int j, int size);
     MenuBar * _menuBar;
+    void refreshTokensStyle(int size);
 
 private slots:
     void clickToken();
