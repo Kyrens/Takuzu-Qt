@@ -120,7 +120,7 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="font">
@@ -161,7 +161,7 @@
   </widget>
   <action name="actionNouvelle_partie">
    <property name="text">
-    <string>&amp;Nouvelle partie ...</string>
+    <string>&amp;Nouvelle partie</string>
    </property>
    <property name="font">
     <font>
