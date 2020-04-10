@@ -1,8 +1,9 @@
-# Le projet
+# Projet de conception d'interface graphique - Takuzu
+VIRARD Nicolas, KICHENASSAMY Ritchie
 
 ## Fonctionnalités implémentées
 - Barre de menu pour créer une nouvelle partie, quitter, avoir de l'aide etc...
-- Plusieurs choix de tailles et de difficultés (grilles de tailles 6x6, 8x8, 10x10, 14x14 et difficultés faciles ou difficiles)
+- Plusieurs choix de tailles et de difficultés (grilles de tailles 6x6, 8x8, 10x10, 14x14 et difficultés facile ou difficile)
 - Possibilité d'ajouter des grilles personnalisées dans le dossier grids
 - Chronomètre indiquant le temps de jeu
 - Possbilité de revenir en arrière avec un compteur de retours en arrière
@@ -12,7 +13,7 @@
 - Possibilité de changer le style des jetons
 - Retour au menu principal possible à tout moment
 
-## Fonctionnalités non implémentée
+## Fonctionnalités non implémentées
 - Système de sauvegarde et chargement de parties
 - Editeur de grille afin de faciliter l'implémentation de nouvelles grilles
 - Importation de styles personnalisés
@@ -53,7 +54,7 @@ L'éxecutable est alors nommé "Takuzu"
 
 ## Fichiers et dossiers
 
-- **GameWindow.cpp et GameWindow.h**: Vue pour la fenêtre du jeu (celle où il ya la grille)
+- **GameWindow.cpp et GameWindow.h**: Vue pour la fenêtre du jeu (celle où il y a la grille)
 - **GameWindow.ui**: Interface de la vue du jeu
 - **GameWindowModel.cpp et GameWindowMode.h**: Modèle pour la fenêtre de jeu
 - **GameWindowPresenter.cpp et GameWindowPresenter.h**: Présentation pour la fenêtre du jeu
